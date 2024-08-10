@@ -2,6 +2,10 @@
 #include <Windows.h>
 #include <iostream>
 
+//#include "powrprof.h"
+//using namespace System::Runtime::InteropServices;
+
+
 using namespace System;
 using namespace System::Windows::Forms;
 
@@ -14,8 +18,6 @@ void APPLICATION_START() {
 	std::cout << "\n APPLICATION START\n\n";
 	std::cout << "\tStatistic:\n\n";
 
-
-
 	std::cout << "\n\n";
 }
 void APPLICATION_FORM() {
@@ -25,7 +27,7 @@ void APPLICATION_FORM() {
 	Application::Run(% form);
 }
 void APPLICATION_END() {
-	std::cout << "\nAPPLICATION END\n\n";
+	std::cout << "\n APPLICATION END\n\n";
 	system("pause");
 }
 
@@ -38,4 +40,3 @@ int main(array<String^>^ args) {
 	APPLICATION_END();
 	return 0;
 }
-
