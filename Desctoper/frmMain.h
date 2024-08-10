@@ -35,7 +35,9 @@ namespace Desctoper {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ btnClose;
+	protected:
+
 	protected:
 
 	private:
@@ -51,39 +53,66 @@ namespace Desctoper {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(frmMain::typeid));
+			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// button1
+			// btnClose
 			// 
-			this->button1->Location = System::Drawing::Point(351, 12);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &frmMain::button1_Click);
+			this->btnClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->btnClose->BackColor = System::Drawing::Color::Transparent;
+			this->btnClose->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
+			this->btnClose->Font = (gcnew System::Drawing::Font(L"Marlett", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->btnClose->Location = System::Drawing::Point(395, -1);
+			this->btnClose->Margin = System::Windows::Forms::Padding(3, 3, 0, 0);
+			this->btnClose->Name = L"btnClose";
+			this->btnClose->Size = System::Drawing::Size(44, 44);
+			this->btnClose->TabIndex = 0;
+			this->btnClose->Text = L"X";
+			this->btnClose->UseVisualStyleBackColor = false;
+			this->btnClose->Click += gcnew System::EventHandler(this, &frmMain::button1_Click);
 			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::White;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(438, 260);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->btnClose);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"frmMain";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"frmMain";
+			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->Load += gcnew System::EventHandler(this, &frmMain::frmMain_Load);
+			this->Click += gcnew System::EventHandler(this, &frmMain::frmMain_Click);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
 	private: System::Void frmMain_Load(System::Object^ sender, System::EventArgs^ e) {
 		std::cout << "\tfrmMain start\n";
+
+
+		
+		//this->BackgroundImage->FromFile("Sources\\Images\\TStrannik.png");
+		// 
+		//this->BackgroundImage = Image::FromFile(openDlg->FileName);
+
+
 	}
+
+
+		 
+
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
+	}
+
+	private: System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->WindowState = FormWindowState::Minimized;
 	}
 
 	};

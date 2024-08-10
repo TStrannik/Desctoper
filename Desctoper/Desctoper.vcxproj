@@ -130,6 +130,10 @@
       <DependentUpon>frmMain.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sources\Images\TStrannik.jpg" />
+    <Image Include="Sources\Images\TStrannik.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

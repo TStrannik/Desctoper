@@ -14,7 +14,7 @@ void APPLICATION_START() {
 	std::cout << "\n APPLICATION START\n\n";
 	std::cout << "\tStatistic:\n\n";
 
-	std::cout << "\tdevelop branch start\n";
+
 
 	std::cout << "\n\n";
 }
