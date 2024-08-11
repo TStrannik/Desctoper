@@ -18,6 +18,10 @@ void APPLICATION_START() {
 	std::cout << "\n APPLICATION START\n\n";
 	std::cout << "\tStatistic:\n\n";
 
+
+	// Let's code
+
+
 	std::cout << "\n\n";
 }
 void APPLICATION_FORM() {
