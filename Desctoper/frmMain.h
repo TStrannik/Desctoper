@@ -243,35 +243,44 @@ namespace Desctoper {
 
 
 	private: System::Void lblCurrentTime_MouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		std::cout << "\tlblCurrentTime dblclick\n";
-
-
-		switch (dateTimePos) {
-
+		switch (dateTimePos)
+		{
 		case 0x00:
+			lblCurrentTime->Font = (
+				gcnew System::Drawing::Font(
+					lblCurrentTime->Font->FontFamily, 24, lblCurrentTime->Font->Style
+				)
+			);
 			lblCurrentTime->Anchor = (AnchorStyles::Bottom | AnchorStyles::Right);
-			lblCurrentTime->Left = this->Width - lblCurrentTime->Width - 5;
-			lblCurrentTime->Top = this->Height - lblCurrentTime->Height - 5;
-			dateTimePos = DT_POS_RIGHT;
+			lblCurrentTime->Left   = this->Width  - lblCurrentTime->Width  - 5;
+			lblCurrentTime->Top    = this->Height - lblCurrentTime->Height - 5;
+			dateTimePos			   = DT_POS_RIGHT;
 			break;
 
 		case 0x01:
-			lblCurrentTime->Anchor = (AnchorStyles::Bottom | AnchorStyles::Left);
-			lblCurrentTime->Left = 5;
-			lblCurrentTime->Top = this->Height - lblCurrentTime->Height - 5;
-			dateTimePos = DT_POS_MIDDLE;
+			lblCurrentTime->Font = (
+				gcnew System::Drawing::Font(
+					lblCurrentTime->Font->FontFamily, 150, lblCurrentTime->Font->Style
+				)
+			);
+			lblCurrentTime->Anchor = (AnchorStyles::None);
+			lblCurrentTime->Left   = this->Width  / 2 - lblCurrentTime->Width  / 2;
+			lblCurrentTime->Top    = this->Height / 2 - lblCurrentTime->Height / 2 - 5;
+			dateTimePos			   = DT_POS_MIDDLE;
 			break;
 
 		case 0x02:
-			lblCurrentTime->Anchor = (AnchorStyles::None);
-			lblCurrentTime->Left = this->Width / 2 - lblCurrentTime->Width / 2;
-			lblCurrentTime->Top = this->Height / 2 - lblCurrentTime->Height / 2 - 5;
-			dateTimePos = DT_POS_LEFT;
+			lblCurrentTime->Font = (
+				gcnew System::Drawing::Font(
+					lblCurrentTime->Font->FontFamily, 24, lblCurrentTime->Font->Style
+				)
+			);
+			lblCurrentTime->Anchor = (AnchorStyles::Bottom | AnchorStyles::Left);
+			lblCurrentTime->Left   = 5;
+			lblCurrentTime->Top	   = this->Height - lblCurrentTime->Height - 5;
+			dateTimePos			   = DT_POS_LEFT;
 			break;
-		}
-
-
-		
+		}		
 	}
 
 
