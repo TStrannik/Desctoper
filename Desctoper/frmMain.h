@@ -82,7 +82,6 @@ namespace Desctoper {
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
 			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(frmMain::typeid));
 			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->tmrDisplayRequired = (gcnew System::Windows::Forms::Timer(this->components));
 			this->lblCurrentTime = (gcnew System::Windows::Forms::Label());
@@ -169,7 +168,6 @@ namespace Desctoper {
 			this->button1->Size = System::Drawing::Size(44, 44);
 			this->button1->TabIndex = 3;
 			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Visible = false;
 			this->button1->Click += gcnew System::EventHandler(this, &frmMain::button1_Click);
 			// 
 			// label1
@@ -204,7 +202,6 @@ namespace Desctoper {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::White;
-			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(844, 495);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -217,9 +214,9 @@ namespace Desctoper {
 			this->Name = L"frmMain";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"frmMain";
-			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->Load += gcnew System::EventHandler(this, &frmMain::frmMain_Load);
 			this->Click += gcnew System::EventHandler(this, &frmMain::frmMain_Click);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseMove);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -335,10 +332,13 @@ namespace Desctoper {
 	}
 
 
-
+		   // make normal work
+		   // don't move throw the borders
 
 		   int DDPosXStart;
 		   int DDPosYStart;
+		   int DDXS;
+		   int DDYS;
 		   int DDPosX;
 		   int DDPosY;
 
@@ -347,24 +347,40 @@ namespace Desctoper {
 
 		DDPosXStart = lblCurrentTime->Left;
 		DDPosYStart = lblCurrentTime->Top;
+
+		DDXS = e->X;
+		DDYS = e->Y;
+
+
 		DDIsMove = true;
 	}
 	private: System::Void lblCurrentTime_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		
+	
 
 		if (DDIsMove) {
-			lblCurrentTime->Left = e->X;
-			lblCurrentTime->Top  = 0 - e->Y;
+			lblCurrentTime->Left = this->Cursor->Position.X - DDXS;
+			lblCurrentTime->Top  = this->Cursor->Position.Y - DDYS;
 		}
 
 		label1->Text = DDPosXStart.ToString() + " : " + DDPosXStart.ToString();
-		label2->Text = e->X.ToString() + " : " + e->Y.ToString();
-		label3->Text = lblCurrentTime->Left.ToString() + " : " + lblCurrentTime->Top.ToString();
+		label2->Text = DDXS.ToString() + " : " + DDYS.ToString();
+		label3->Text = this->Cursor->Position.X.ToString() + " : " + this->Cursor->Position.Y.ToString();
+		
 	}
 	private: System::Void lblCurrentTime_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 		DDIsMove = false;
 		tmrTime->Enabled = true;
 	}
+
+	private: System::Void frmMain_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		DDPosX = e->X;
+		DDPosY = e->Y;
+
+		label3->Text = DDPosX.ToString() + " : " + DDPosY.ToString();
+	}
+
+
+
 
 };
 }
