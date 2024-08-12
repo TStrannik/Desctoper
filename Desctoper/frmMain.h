@@ -48,15 +48,17 @@ namespace Desctoper {
 
 
 	private: System::Windows::Forms::Label^ lblCurrentTime;
-	private: System::Windows::Forms::Timer^ tmrTime;
+
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::PictureBox^ pbxClose;
+	private: System::Windows::Forms::PictureBox^ pbx2;
 
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
+
+	private: System::Windows::Forms::Timer^ tmrTime;
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -97,10 +99,10 @@ namespace Desctoper {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->pbxClose = (gcnew System::Windows::Forms::PictureBox());
-			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->pbx2 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbx2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btnClose
@@ -117,6 +119,7 @@ namespace Desctoper {
 			this->btnClose->TabIndex = 0;
 			this->btnClose->Text = L"X";
 			this->btnClose->UseVisualStyleBackColor = false;
+			this->btnClose->Visible = false;
 			this->btnClose->Click += gcnew System::EventHandler(this, &frmMain::btnClose_Click);
 			// 
 			// tmrDisplayRequired
@@ -132,6 +135,7 @@ namespace Desctoper {
 			this->lblCurrentTime->BackColor = System::Drawing::Color::Transparent;
 			this->lblCurrentTime->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
+			this->lblCurrentTime->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->lblCurrentTime->Location = System::Drawing::Point(9, 431);
 			this->lblCurrentTime->Name = L"lblCurrentTime";
 			this->lblCurrentTime->Size = System::Drawing::Size(220, 55);
@@ -163,6 +167,7 @@ namespace Desctoper {
 			this->chart1->Size = System::Drawing::Size(310, 182);
 			this->chart1->TabIndex = 2;
 			this->chart1->Text = L"chart1";
+			this->chart1->Visible = false;
 			// 
 			// button1
 			// 
@@ -177,6 +182,7 @@ namespace Desctoper {
 			this->button1->Size = System::Drawing::Size(50, 50);
 			this->button1->TabIndex = 3;
 			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Visible = false;
 			this->button1->Click += gcnew System::EventHandler(this, &frmMain::button1_Click);
 			// 
 			// label1
@@ -209,6 +215,7 @@ namespace Desctoper {
 			// pbxClose
 			// 
 			this->pbxClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->pbxClose->BackColor = System::Drawing::Color::Transparent;
 			this->pbxClose->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pbxClose.Image")));
 			this->pbxClose->Location = System::Drawing::Point(794, 0);
 			this->pbxClose->Name = L"pbxClose";
@@ -216,16 +223,20 @@ namespace Desctoper {
 			this->pbxClose->TabIndex = 7;
 			this->pbxClose->TabStop = false;
 			this->pbxClose->Click += gcnew System::EventHandler(this, &frmMain::pbxClose_Click);
+			this->pbxClose->MouseLeave += gcnew System::EventHandler(this, &frmMain::pbxClose_MouseLeave);
 			this->pbxClose->MouseHover += gcnew System::EventHandler(this, &frmMain::pbxClose_MouseHover);
 			// 
-			// pictureBox1
+			// pbx2
 			// 
-			this->pictureBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->pictureBox1->Location = System::Drawing::Point(743, 0);
-			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(50, 50);
-			this->pictureBox1->TabIndex = 8;
-			this->pictureBox1->TabStop = false;
+			this->pbx2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->pbx2->BackColor = System::Drawing::Color::Transparent;
+			this->pbx2->Location = System::Drawing::Point(743, 0);
+			this->pbx2->Name = L"pbx2";
+			this->pbx2->Size = System::Drawing::Size(50, 50);
+			this->pbx2->TabIndex = 8;
+			this->pbx2->TabStop = false;
+			this->pbx2->Click += gcnew System::EventHandler(this, &frmMain::pbx2_Click);
+			this->pbx2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmMain::pbx2_Paint);
 			// 
 			// frmMain
 			// 
@@ -233,7 +244,7 @@ namespace Desctoper {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(844, 495);
-			this->Controls->Add(this->pictureBox1);
+			this->Controls->Add(this->pbx2);
 			this->Controls->Add(this->pbxClose);
 			this->Controls->Add(this->lblCurrentTime);
 			this->Controls->Add(this->label3);
@@ -249,10 +260,12 @@ namespace Desctoper {
 			this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
 			this->Load += gcnew System::EventHandler(this, &frmMain::frmMain_Load);
 			this->Click += gcnew System::EventHandler(this, &frmMain::frmMain_Click);
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmMain::frmMain_Paint);
+			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &frmMain::frmMain_KeyPress);
 			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &frmMain::frmMain_MouseMove);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbx2))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -271,11 +284,6 @@ namespace Desctoper {
 		System::Void frmMain_Load(System::Object^ sender, System::EventArgs^ e) {
 			std::cout << "\tfrmMain start\n";
 
-			//this->BackgroundImage->FromFile("Sources\\Images\\TStrannik.png");
-			// 
-			//this->BackgroundImage = Image::FromFile(openDlg->FileName);
-
-
 			//xxxx
 			killme = true;
 
@@ -283,12 +291,28 @@ namespace Desctoper {
 			dateTimePos = DT_POS_LEFT;
 			DDIsMove = false;
 
-			this->Left = 1920 - this->Width - 5;
-			this->Top = 500;
+			this->Left = 1920 - this->Width - 5; this->Top = 500;
+		}
+
+		System::Void frmMain_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			//g->DrawEllipse(Pens::Black, 10, 10, 75, 50); //g->DrawEllipse(Pens::Red, 90, 10, 75, 75); //g->DrawRectangle(Pens::Blue, 170, 10, 75, 75);
+
+			Graphics^ g = e->Graphics;
+
+			Color^ clr = gcnew Color();
+			Brush^ br = gcnew SolidBrush(clr->Black);
+			System::Drawing::Font^ fnt = gcnew System::Drawing::Font("Arial", 20, FontStyle::Bold);
+
+			g->DrawString("Desctoper ver 0.1.0", fnt, br, 100, 120);
+		
+		}
+		System::Void pbx2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			Graphics^ g = e->Graphics;
+
+			g->DrawLine(Pens::Black, 5, 5, 10, 10);
 		}
 
 
-	private:
 		System::Void tmrDisplayRequired_Tick(System::Object^ sender, System::EventArgs^ e) {
 			SetThreadExecutionState(ES_DISPLAY_REQUIRED);	// The display doesn't go sleep
 		}
@@ -356,6 +380,11 @@ namespace Desctoper {
 			this->Close();
 		}
 		
+		// HOTKEYS
+		System::Void frmMain_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+							// 'A' 'b'
+			if (e->KeyChar == (char)27) this->Close();
+		}
 
 	private:
 		int DDPosXStart, DDPosYStart;
@@ -383,21 +412,31 @@ namespace Desctoper {
 			this->Close();
 		}
 		System::Void pbxClose_MouseHover(System::Object^ sender, System::EventArgs^ e) {
-	
-			
-			
-			label1->Text = CurrentDir + "\\Sources\\UI\\bClose_2.png";
-
-
-			// path is right, but file can not be opend
-			pbxClose->Image->FromFile(CurrentDir + "\\Sources\\UI\\bClose_2.png");
-
-
-			//System::IO::FileNotFoundException;
-			/*try {
-			} catch (const std::exception&) {
-			}*/
+			pbxResetImg(pbxClose, "\\Sources\\UI\\bClose_2.png");
 		}
+		System::Void pbxClose_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+			pbxResetImg(pbxClose, "\\Sources\\UI\\bClose_1.png");
+		}
+
+		
+
+
+
+
+
+		System::Void pbx2_Click(System::Object^ sender, System::EventArgs^ e) {
+			//pbx2->DrawToBitmap
+
+			
+
+		}
+
+
+
+
+
+
+
 
 
 	public:
@@ -412,6 +451,19 @@ namespace Desctoper {
 			}
 			return TRUE;
 		}
+		void pbxResetImg(System::Windows::Forms::PictureBox^ pbx, String^ dir) {
+			try {
+				pbx->Image = Image::FromFile(CurrentDir + dir);
+			}
+			catch (System::IO::FileNotFoundException^) {
+				//std::cout << "\t!! file " << dir << " not found\n";
+				std::cout << "\t!! file not found\n";
+			}
+		}
+
+
+
+
 
 };
 
