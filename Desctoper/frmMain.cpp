@@ -20,7 +20,7 @@ void APPLICATION_START() {
 
 
 	// Let's code
-
+	std::cout << "\tInfo of Application here =/\n";
 
 	std::cout << "\n\n";
 }

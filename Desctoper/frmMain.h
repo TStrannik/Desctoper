@@ -2,12 +2,13 @@
 #include <Windows.h>
 #include <string>
 
-#define DT_POS_LEFT   0x00;
-#define DT_POS_RIGHT  0x01;
-#define DT_POS_MIDDLE 0x02;
+const int DT_POS_LEFT   = 0x00;
+const int DT_POS_RIGHT  = 0x01;
+const int DT_POS_MIDDLE = 0x02;
 
 
 #pragma once
+
 
 namespace Desctoper {
 
@@ -203,11 +204,11 @@ namespace Desctoper {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(844, 495);
+			this->Controls->Add(this->lblCurrentTime);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->chart1);
-			this->Controls->Add(this->lblCurrentTime);
 			this->Controls->Add(this->btnClose);
 			this->Controls->Add(this->button1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
@@ -226,161 +227,138 @@ namespace Desctoper {
 
 		bool killme;
 
-		
 		int  dateTimePos;
 		bool DDIsMove;
 
-	private: System::Void frmMain_Load(System::Object^ sender, System::EventArgs^ e) {
-		std::cout << "\tfrmMain start\n";
+	private:
+		System::Void frmMain_Load(System::Object^ sender, System::EventArgs^ e) {
+			std::cout << "\tfrmMain start\n";
 
-		//this->BackgroundImage->FromFile("Sources\\Images\\TStrannik.png");
-		// 
-		//this->BackgroundImage = Image::FromFile(openDlg->FileName);
-
-
-		//xxxx
-		killme = true;
+			//this->BackgroundImage->FromFile("Sources\\Images\\TStrannik.png");
+			// 
+			//this->BackgroundImage = Image::FromFile(openDlg->FileName);
 
 
+			//xxxx
+			killme = true;
 
-		// DEFAULTS VALUES
-		dateTimePos = DT_POS_LEFT;
-		DDIsMove	= false;
+			// DEFAULTS VALUES
+			dateTimePos = DT_POS_LEFT;
+			DDIsMove = false;
 
-
-		this->Left = 1920 - this->Width  - 5;
-		this->Top  = 5;
-
-	}
-
-
-
-	// System::Threading::Thread::Sleep(1000);
-		 
-
-	private: System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->Close();
-	}
-
-	private: System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->WindowState = FormWindowState::Minimized;
-	}
-
-	private: System::Void tmrDisplayRequired_Tick(System::Object^ sender, System::EventArgs^ e) {
-		std::cout << "\tcall: SetThreadExecutionState\n";
-		SetThreadExecutionState(ES_DISPLAY_REQUIRED);						// Display not sleep
-	}
-
-	private: System::Void tmrTime_Tick(System::Object^ sender, System::EventArgs^ e) {
-		SYSTEMTIME systime;
-		GetSystemTime(&systime);
-		unsigned int H = (systime.wHour + 3), M = (systime.wMinute), S = (systime.wSecond);		
-		String^ time = "";
-		if (H < 10) time += "0" + H.ToString(); else time += H.ToString(); time += ":";
-		if (M < 10) time += "0" + M.ToString(); else time += M.ToString(); time += ":";
-		if (S < 10) time += "0" + S.ToString(); else time += S.ToString();
-		lblCurrentTime->Text = time;
-	}
-
-	private: System::Void lblCurrentTime_MouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		switch (dateTimePos)
-		{
-		case 0x00:
-			lblCurrentTime->Font = (
-				gcnew System::Drawing::Font(
-					lblCurrentTime->Font->FontFamily, 36, lblCurrentTime->Font->Style
-				)
-			);
-			lblCurrentTime->Anchor = (AnchorStyles::Bottom | AnchorStyles::Right);
-			lblCurrentTime->Left   = this->Width  - lblCurrentTime->Width  - 5;
-			lblCurrentTime->Top    = this->Height - lblCurrentTime->Height - 5;
-			dateTimePos			   = DT_POS_RIGHT;
-			break;
-
-		case 0x01:
-			lblCurrentTime->Font = (
-				gcnew System::Drawing::Font(
-					lblCurrentTime->Font->FontFamily, 150, lblCurrentTime->Font->Style
-				)
-			);
-			lblCurrentTime->Anchor = (AnchorStyles::None);
-			lblCurrentTime->Left   = this->Width  / 2 - lblCurrentTime->Width  / 2;
-			lblCurrentTime->Top    = this->Height / 2 - lblCurrentTime->Height / 2 - 5;
-			dateTimePos			   = DT_POS_MIDDLE;
-			break;
-
-		case 0x02:
-			lblCurrentTime->Font = (
-				gcnew System::Drawing::Font(
-					lblCurrentTime->Font->FontFamily, 36, lblCurrentTime->Font->Style
-				)
-			);
-			lblCurrentTime->Anchor = (AnchorStyles::Bottom | AnchorStyles::Left);
-			lblCurrentTime->Left   = 5;
-			lblCurrentTime->Top	   = this->Height - lblCurrentTime->Height - 5;
-			dateTimePos			   = DT_POS_LEFT;
-			break;
-		}		
-	}
-
-
-		  
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		//if (killme) this->WindowState = FormWindowState::Normal; else this->WindowState = FormWindowState::Maximized;
-		killme ? this->WindowState = FormWindowState::Normal : this->WindowState = FormWindowState::Maximized;
-		killme = !killme;
-	}
-
-
-		   // make normal work
-		   // don't move throw the borders
-
-		   int DDPosXStart;
-		   int DDPosYStart;
-		   int DDXS;
-		   int DDYS;
-		   int DDPosX;
-		   int DDPosY;
-
-	private: System::Void lblCurrentTime_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		tmrTime->Enabled = false;
-
-		DDPosXStart = lblCurrentTime->Left;
-		DDPosYStart = lblCurrentTime->Top;
-
-		DDXS = e->X;
-		DDYS = e->Y;
-
-
-		DDIsMove = true;
-	}
-	private: System::Void lblCurrentTime_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-	
-
-		if (DDIsMove) {
-			lblCurrentTime->Left = this->Cursor->Position.X - DDXS;
-			lblCurrentTime->Top  = this->Cursor->Position.Y - DDYS;
+			this->Left = 1920 - this->Width - 5;
+			this->Top = 500;
 		}
 
-		label1->Text = DDPosXStart.ToString() + " : " + DDPosXStart.ToString();
-		label2->Text = DDXS.ToString() + " : " + DDYS.ToString();
-		label3->Text = this->Cursor->Position.X.ToString() + " : " + this->Cursor->Position.Y.ToString();
+
+	private:
+		System::Void tmrDisplayRequired_Tick(System::Object^ sender, System::EventArgs^ e) {
+			SetThreadExecutionState(ES_DISPLAY_REQUIRED);	// The display doesn't go sleep
+		}
+		System::Void tmrTime_Tick(System::Object^ sender, System::EventArgs^ e) {
+			SYSTEMTIME systime;
+			GetSystemTime(&systime);
+			unsigned int H = (systime.wHour + 3), M = (systime.wMinute), S = (systime.wSecond);
+			String^ time = "";
+			if (H < 10) time += "0" + H.ToString(); else time += H.ToString(); time += ":";
+			if (M < 10) time += "0" + M.ToString(); else time += M.ToString(); time += ":";
+			if (S < 10) time += "0" + S.ToString(); else time += S.ToString();
+			lblCurrentTime->Text = time;
+		}
+
+		System::Void lblCurrentTime_MouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			switch (dateTimePos)
+			{
+			case DT_POS_LEFT:
+				lblCurrentTime->Font = (
+					gcnew System::Drawing::Font(
+						lblCurrentTime->Font->FontFamily, 36, lblCurrentTime->Font->Style
+					)
+				);
+				lblCurrentTime->Anchor = (AnchorStyles::Bottom | AnchorStyles::Right);
+				lblCurrentTime->Left = this->Width - lblCurrentTime->Width - 5;
+				lblCurrentTime->Top = this->Height - lblCurrentTime->Height - 5;
+				break;
+
+			case DT_POS_RIGHT:
+				lblCurrentTime->Font = (
+					gcnew System::Drawing::Font(
+						lblCurrentTime->Font->FontFamily, 150, lblCurrentTime->Font->Style
+					)
+				);
+				lblCurrentTime->Anchor = (AnchorStyles::None);
+				lblCurrentTime->Left = this->Width / 2 - lblCurrentTime->Width / 2;
+				lblCurrentTime->Top = this->Height / 2 - lblCurrentTime->Height / 2 - 5;
+				break;
+
+			case DT_POS_MIDDLE:
+				lblCurrentTime->Font = (
+					gcnew System::Drawing::Font(
+						lblCurrentTime->Font->FontFamily, 36, lblCurrentTime->Font->Style
+					)
+				);
+				lblCurrentTime->Anchor = (AnchorStyles::Bottom | AnchorStyles::Left);
+				lblCurrentTime->Left = 5;
+				lblCurrentTime->Top = this->Height - lblCurrentTime->Height - 5;
+				break;
+			}
+
+			if (e->Button == System::Windows::Forms::MouseButtons::Right) {
+				if (dateTimePos == DT_POS_LEFT) dateTimePos = DT_POS_MIDDLE; else dateTimePos--;
+			} else {
+				if (dateTimePos == DT_POS_MIDDLE) dateTimePos = DT_POS_LEFT; else dateTimePos++;				
+			}
+		}
+		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			//if (killme) this->WindowState = FormWindowState::Normal; else this->WindowState = FormWindowState::Maximized;
+			killme ? this->WindowState = FormWindowState::Normal : this->WindowState = FormWindowState::Maximized;
+			killme = !killme;
+		}
+		System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->WindowState = FormWindowState::Minimized;
+		}
+		System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->Close();
+		}
+
+
+	private:
+		int DDPosXStart, DDPosYStart;
+		int DDPosX, DDPosY;
+		System::Void lblCurrentTime_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			tmrTime->Enabled = false; DDIsMove = true;
+			DDPosXStart = lblCurrentTime->Left; DDPosYStart = lblCurrentTime->Top;
+			DDPosX = e->X; DDPosY = e->Y;
+		}
+		System::Void lblCurrentTime_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			if (DDIsMove) {
+				lblCurrentTime->Left = this->Cursor->Position.X - DDPosX - this->Left;
+				lblCurrentTime->Top = this->Cursor->Position.Y - DDPosY - this->Top;
+			}
+		}
+		System::Void lblCurrentTime_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			DDIsMove = false; tmrTime->Enabled = true; aboardCheck(lblCurrentTime);
+		}
+
+		System::Void frmMain_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+			//
+		}
+
+
+	public:
+		bool aboardCheck(System::Windows::Forms::Label^ lbl) {
+			bool cond =
+				(lbl->Left > this->Width - 10) || (lbl->Top > this->Height - 20);
+			if (cond) {
+				lbl->Left = DDPosXStart;
+				lbl->Top = DDPosYStart;
+
+				return FALSE;
+			}
+			return TRUE;
+		}
+
 		
-	}
-	private: System::Void lblCurrentTime_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		DDIsMove = false;
-		tmrTime->Enabled = true;
-	}
+	};
 
-	private: System::Void frmMain_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		DDPosX = e->X;
-		DDPosY = e->Y;
-
-		label3->Text = DDPosX.ToString() + " : " + DDPosY.ToString();
-	}
-
-
-
-
-};
 }
