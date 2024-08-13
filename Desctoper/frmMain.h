@@ -63,6 +63,7 @@ namespace Desctoper {
 
 	private: System::Windows::Forms::Timer^ tmrTime;
 	private: System::Windows::Forms::PictureBox^ pbx3;
+	private: System::Windows::Forms::PictureBox^ pbx4;
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -89,9 +90,9 @@ namespace Desctoper {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(frmMain::typeid));
 			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->tmrDisplayRequired = (gcnew System::Windows::Forms::Timer(this->components));
@@ -105,10 +106,12 @@ namespace Desctoper {
 			this->pbxClose = (gcnew System::Windows::Forms::PictureBox());
 			this->pbx2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pbx3 = (gcnew System::Windows::Forms::PictureBox());
+			this->pbx4 = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbx2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbx3))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbx4))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// btnClose
@@ -160,16 +163,16 @@ namespace Desctoper {
 			// 
 			// chart1
 			// 
-			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
-			legend1->Name = L"Legend1";
-			this->chart1->Legends->Add(legend1);
+			chartArea2->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea2);
+			legend2->Name = L"Legend1";
+			this->chart1->Legends->Add(legend2);
 			this->chart1->Location = System::Drawing::Point(19, 12);
 			this->chart1->Name = L"chart1";
-			series1->ChartArea = L"ChartArea1";
-			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
-			this->chart1->Series->Add(series1);
+			series2->ChartArea = L"ChartArea1";
+			series2->Legend = L"Legend1";
+			series2->Name = L"Series1";
+			this->chart1->Series->Add(series2);
 			this->chart1->Size = System::Drawing::Size(310, 182);
 			this->chart1->TabIndex = 2;
 			this->chart1->Text = L"chart1";
@@ -260,12 +263,26 @@ namespace Desctoper {
 			this->pbx3->MouseLeave += gcnew System::EventHandler(this, &frmMain::pbx3_MouseLeave);
 			this->pbx3->MouseHover += gcnew System::EventHandler(this, &frmMain::pbx3_MouseHover);
 			// 
+			// pbx4
+			// 
+			this->pbx4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->pbx4->BackColor = System::Drawing::Color::Transparent;
+			this->pbx4->Location = System::Drawing::Point(631, 0);
+			this->pbx4->Name = L"pbx4";
+			this->pbx4->Size = System::Drawing::Size(50, 50);
+			this->pbx4->TabIndex = 10;
+			this->pbx4->TabStop = false;
+			this->pbx4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmMain::pbx4_Paint);
+			this->pbx4->MouseLeave += gcnew System::EventHandler(this, &frmMain::pbx4_MouseLeave);
+			this->pbx4->MouseHover += gcnew System::EventHandler(this, &frmMain::pbx4_MouseHover);
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::White;
 			this->ClientSize = System::Drawing::Size(844, 495);
+			this->Controls->Add(this->pbx4);
 			this->Controls->Add(this->pbx3);
 			this->Controls->Add(this->pbx2);
 			this->Controls->Add(this->pbxClose);
@@ -290,6 +307,7 @@ namespace Desctoper {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbx2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbx3))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbx4))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -379,9 +397,26 @@ namespace Desctoper {
 		}
 		System::Void pbx3_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
 			UICompStateSwitch(pbx3, CS_LEAVE);
-		}
-		
+		}		
 
+		System::Void pbx4_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			Graphics^ g = e->Graphics;
+
+			Image^ im;
+			switch (UICompState) {
+			case CS_LEAVE:
+				im = Image::FromFile(CurrentDir + "\\Sources\\UI\\bClose_1.png"); break;
+			case CS_HOVER:
+				im = Image::FromFile(CurrentDir + "\\Sources\\UI\\bClose_2.png"); break;
+			}
+			g->DrawImage(im, 0, 0, 50, 50);
+		}
+		System::Void pbx4_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+			UICompStateSwitch(pbx4, CS_LEAVE);
+		}
+		System::Void pbx4_MouseHover(System::Object^ sender, System::EventArgs^ e) {
+			UICompStateSwitch(pbx4, CS_HOVER);
+		}
 
 		System::Void tmrDisplayRequired_Tick(System::Object^ sender, System::EventArgs^ e) {
 			SetThreadExecutionState(ES_DISPLAY_REQUIRED);	// The display doesn't go sleep
@@ -530,6 +565,8 @@ namespace Desctoper {
 			UICompState = state;
 			pbx->Refresh();
 		}
+
+
 
 
 
