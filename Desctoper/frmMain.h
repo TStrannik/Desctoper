@@ -309,6 +309,8 @@ namespace Desctoper {
 		System::Void pbx2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;
 
+
+			// Свинья
 			g->DrawLine(Pens::Black, 5, 5, 10, 10);
 		}
 
