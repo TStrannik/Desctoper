@@ -63,6 +63,7 @@ namespace Desctoper {
 
 	private: System::Windows::Forms::Timer^ tmrTime;
 	private: System::Windows::Forms::PictureBox^ pbxFile;
+	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
 
 
 
@@ -91,9 +92,9 @@ namespace Desctoper {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->tmrDisplayRequired = (gcnew System::Windows::Forms::Timer(this->components));
 			this->lblCurrentTime = (gcnew System::Windows::Forms::Label());
 			this->tmrTime = (gcnew System::Windows::Forms::Timer(this->components));
@@ -104,6 +105,7 @@ namespace Desctoper {
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->pbxClose = (gcnew System::Windows::Forms::PictureBox());
 			this->pbxFile = (gcnew System::Windows::Forms::PictureBox());
+			this->ofdBack = (gcnew System::Windows::Forms::OpenFileDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
@@ -141,16 +143,16 @@ namespace Desctoper {
 			// 
 			// chart1
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea2);
-			legend2->Name = L"Legend1";
-			this->chart1->Legends->Add(legend2);
+			chartArea1->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea1);
+			legend1->Name = L"Legend1";
+			this->chart1->Legends->Add(legend1);
 			this->chart1->Location = System::Drawing::Point(19, 12);
 			this->chart1->Name = L"chart1";
-			series2->ChartArea = L"ChartArea1";
-			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
-			this->chart1->Series->Add(series2);
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Series1";
+			this->chart1->Series->Add(series1);
 			this->chart1->Size = System::Drawing::Size(310, 182);
 			this->chart1->TabIndex = 2;
 			this->chart1->Text = L"chart1";
@@ -226,6 +228,10 @@ namespace Desctoper {
 			this->pbxFile->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &frmMain::pbxFile_Paint);
 			this->pbxFile->MouseLeave += gcnew System::EventHandler(this, &frmMain::pbxFile_MouseLeave);
 			this->pbxFile->MouseHover += gcnew System::EventHandler(this, &frmMain::pbxFile_MouseHover);
+			// 
+			// ofdBack
+			// 
+			this->ofdBack->FileName = L"openFileDialog1";
 			// 
 			// frmMain
 			// 
@@ -320,20 +326,33 @@ namespace Desctoper {
 			UICompStateSwitch(pbxClose, CS_LEAVE);
 		}
 		
-		System::Void pbxFile_Click(System::Object^ sender, System::EventArgs^ e) { this->Close(); }
+		System::Void pbxFile_Click(System::Object^ sender, System::EventArgs^ e) { ofdBack->ShowDialog(); }
 		System::Void pbxFile_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;
-			Color^ clr = gcnew Color();
-			Brush^ br = gcnew SolidBrush(clr->Black);
+			Color^ clr  = gcnew Color();
+			Brush^ br   = gcnew SolidBrush(clr->Black);
 			Pen^ pen3bk = gcnew Pen(clr->Black, 3.0f);
 			Pen^ pen1wt = gcnew Pen(clr->White, 1.0f);
 
+
 			switch (UICompState) {
 			case CS_LEAVE:
-				g->DrawLine(pen3bk, 10, 10, 40, 40);
+				g->DrawLine(pen3bk, 15, 10, 35, 10); g->DrawArc(pen3bk, 30, 10, 10, 10, 260,  100);
+				g->DrawLine(pen3bk, 40, 15, 40, 35); g->DrawArc(pen3bk, 30, 30, 10, 10, 350,  100);
+				g->DrawLine(pen3bk, 15, 40, 38, 40); g->DrawArc(pen3bk, 10, 30, 10, 10, 170, -100);
+				g->DrawLine(pen3bk, 10, 15, 10, 35); g->DrawArc(pen3bk, 10, 10, 10, 10, 180,  90);
+
+				g->DrawLine(pen3bk, 30, 18, 40, 18); g->DrawLine(pen3bk, 25, 10, 30, 18);
 				break;
 			case CS_HOVER:
-				g->DrawLine(pen1wt, 10, 10, 40, 40); g->DrawLine(pen1wt, 10, 40, 40, 10);
+				g->DrawLine(pen3bk, 15, 10, 35, 10); g->DrawArc(pen3bk, 30, 10, 10, 10, 260,  100);
+				g->DrawLine(pen3bk, 40, 15, 40, 35); g->DrawArc(pen3bk, 30, 30, 10, 10, 350,  100);
+				g->DrawLine(pen3bk, 15, 40, 38, 40); g->DrawArc(pen3bk, 10, 30, 10, 10, 190, -100);
+				g->DrawLine(pen3bk, 10, 15, 10, 35); g->DrawArc(pen3bk, 10, 10, 10, 10, 180,  90);
+				g->DrawLine(pen1wt, 15, 10, 35, 10); g->DrawArc(pen1wt, 30, 10, 10, 10, 260,  100);
+				g->DrawLine(pen1wt, 40, 15, 40, 35); g->DrawArc(pen1wt, 30, 30, 10, 10, 350,  100);
+				g->DrawLine(pen1wt, 15, 40, 38, 40); g->DrawArc(pen1wt, 10, 30, 10, 10, 190, -100);
+				g->DrawLine(pen1wt, 10, 15, 10, 35); g->DrawArc(pen1wt, 10, 10, 10, 10, 180,  90);
 				break;
 			}
 		}
