@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+const int CS_LEAVE = 0x00;
+const int CS_ENTER = 0x01;
+const int CS_HOVER = 0x02;
+
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -30,9 +34,15 @@ namespace ClassLibraryUI {
 		void uiCostructor();
 
 		
+	public:
 		// property int Radius;
 		property int Nejnost;
+		property Color^ ColorLeave;
+		property Color^ ColorEnter;
 
+	private:
+		StringFormat^ SF = gcnew StringFormat;		
+		int UICompState;
 
 	
 
@@ -54,7 +64,7 @@ namespace ClassLibraryUI {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
-		StringFormat^ SF = gcnew StringFormat;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -70,42 +80,49 @@ namespace ClassLibraryUI {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Name = L"uiButton";
-			this->Text = L"SampleText";
 			this->Size = System::Drawing::Size(100, 30);
 			this->Load += gcnew System::EventHandler(this, &uiButton::uiButton_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &uiButton::uiButton_Paint);
+			this->MouseEnter += gcnew System::EventHandler(this, &uiButton::uiButton_MouseEnter);
+			this->MouseLeave += gcnew System::EventHandler(this, &uiButton::uiButton_MouseLeave);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	private: System::Void uiButton_Load(System::Object^ sender, System::EventArgs^ e) {
-		//
-	}
+	private:
+		System::Void uiButton_Load(System::Object^ sender, System::EventArgs^ e) {
+			UICompState = CS_LEAVE;
+		}
+		System::Void uiButton_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			Graphics^ g		  = e->Graphics;
 
-	private: System::Void uiButton_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-		//this->OnPaint(e);
+			int w = Width - 1, h = Height - 1;
+			Pen^	   pen	  = gcnew Pen(BackColor);
+			Brush^	   bBrush = gcnew SolidBrush(BackColor);
+			Brush^     fBrush = gcnew SolidBrush(ForeColor);
+			Rectangle^ rect   = gcnew Rectangle(0, 0, w, h);
 
-		Graphics^ g		  = e->Graphics;
+			g->SmoothingMode  = System::Drawing::Drawing2D::SmoothingMode::HighQuality;	// :AntiAlias;
+			g->Clear(Parent->BackColor);				
+			g->DrawRectangle(pen, 0, 0, w, h);							// (pen, 0, 0, rect);
+			//g->FillRectangle(bBrush, 0, 0, w, h);
+			//g->DrawString(Text, Font, fBrush, (int)w / 2, (int)h / 2, SF);		// Не раб rect
 
-		int w = Width - 1, h = Height - 1;
-		Pen^	   pen	  = gcnew Pen(BackColor);
-		Brush^	   bBrush = gcnew SolidBrush(BackColor);
-		Brush^     fBrush = gcnew SolidBrush(ForeColor);
-		Rectangle^ rect   = gcnew Rectangle(0, 0, w, h);
 
-		g->SmoothingMode  = System::Drawing::Drawing2D::SmoothingMode::HighQuality;	// :AntiAlias;
-		g->Clear(Parent->BackColor);				
-		g->DrawRectangle(pen, 0, 0, w, h);							// (pen, 0, 0, rect);
-		g->FillRectangle(bBrush, 0, 0, w, h);
-		g->DrawString(Text, Font, fBrush, (int)w / 2, (int)h / 2, SF);		// Не раб rect
-		
-		
-	}
-
+			switch (UICompState) {
+			case CS_LEAVE:
+				g->FillRectangle(bBrush, 0, 0, w, h);
+				g->DrawString(Text, Font, fBrush, (int)w / 2, (int)h / 2, SF);
+			break;
+			case CS_ENTER:
+				g->FillRectangle(gcnew SolidBrush(Color::Red), 0, 0, w, h);
+				g->DrawString(Text, Font, fBrush, (int)w / 2, (int)h / 2, SF);
+			break;
+			}
+		}
+		System::Void uiButton_MouseEnter(System::Object^ sender, System::EventArgs^ e) { UICompState = CS_ENTER; Invalidate(); }
+		System::Void uiButton_MouseLeave(System::Object^ sender, System::EventArgs^ e) { UICompState = CS_LEAVE; Invalidate(); }
 	};
-
-	
-
 }
 
 

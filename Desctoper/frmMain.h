@@ -173,13 +173,12 @@ namespace Desctoper {
 			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Marlett", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(445, 0);
+			this->button1->Location = System::Drawing::Point(686, 0);
 			this->button1->Margin = System::Windows::Forms::Padding(3, 3, 0, 0);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(50, 50);
 			this->button1->TabIndex = 3;
 			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Visible = false;
 			this->button1->Click += gcnew System::EventHandler(this, &frmMain::button1_Click);
 			// 
 			// label1
@@ -302,8 +301,7 @@ namespace Desctoper {
 		}
 #pragma endregion
 
-		bool killme;
-
+		////////////// DEFAULTS VALUES:
 		int  dateTimePos;
 		bool DDIsMove;
 		int  UICompState;
@@ -311,9 +309,14 @@ namespace Desctoper {
 		String^ CurrentDir = System::IO::Directory::GetCurrentDirectory();
 
 	private:
+
+
+
+		
+		///////////////////////////////////
+		////////////// FORM
 		System::Void frmMain_Load(System::Object^ sender, System::EventArgs^ e) {
 			std::cout << "\tfrmMain start\n";
-
 
 			SetStyle(
 				ControlStyles::AllPaintingInWmPaint |
@@ -322,14 +325,9 @@ namespace Desctoper {
 				ControlStyles::SupportsTransparentBackColor |
 				ControlStyles::UserPaint, true
 			);
-			
 			DoubleBuffered = true;
 
-
-			//xxxx
-			killme = true;
-
-			// DEFAULTS VALUES
+			////////////// DEFAULTS VALUES SET
 			dateTimePos = DT_POS_LEFT; DDIsMove = false; UICompState = CS_LEAVE;
 			this->Left = 1920 - this->Width - 5; this->Top = 500;
 
@@ -338,7 +336,9 @@ namespace Desctoper {
 			uiButton2->Nejnost = 15;
 
 		}
-
+		System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->WindowState = FormWindowState::Minimized;
+		}
 		System::Void frmMain_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			//g->DrawEllipse(Pens::Black, 10, 10, 75, 50); //g->DrawEllipse(Pens::Red, 90, 10, 75, 75); //g->DrawRectangle(Pens::Blue, 170, 10, 75, 75);
 
@@ -351,6 +351,17 @@ namespace Desctoper {
 			g->DrawString("Desctoper ver 0.1.0", fnt, br, 0, 0);
 		
 		}
+		////////////// HOTKEYS
+		System::Void frmMain_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+			// 'A' 'b'
+			if (e->KeyChar == (char)27) this->Close();
+		}
+		////////////// FORM
+		///////////////////////////////////
+	
+		
+
+		
 
 		///////////////////////////////////
 		////////////// CLOSE
@@ -420,6 +431,11 @@ namespace Desctoper {
 		////////////// FILE
 		///////////////////////////////////
 	
+
+
+
+		///////////////////////////////////
+		////////////// TIMERS
 		System::Void tmrDisplayRequired_Tick(System::Object^ sender, System::EventArgs^ e) {
 			SetThreadExecutionState(ES_DISPLAY_REQUIRED);	// The display doesn't go sleep
 		}
@@ -433,7 +449,14 @@ namespace Desctoper {
 			if (S < 10) time += "0" + S.ToString(); else time += S.ToString();
 			lblCurrentTime->Text = time;
 		}
+		////////////// TIMERS
+		///////////////////////////////////
 
+
+
+
+		///////////////////////////////////
+		////////////// LBL_TIME
 		System::Void lblCurrentTime_MouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 			bool cond = e->Button == System::Windows::Forms::MouseButtons::Right;
 			if (cond) dateTimePos == DT_POS_LEFT   ? dateTimePos = DT_POS_MIDDLE : dateTimePos--;
@@ -475,25 +498,6 @@ namespace Desctoper {
 				break;
 			}
 		}
-		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-			//if (killme) this->WindowState = FormWindowState::Normal; else this->WindowState = FormWindowState::Maximized;
-			killme ? this->WindowState = FormWindowState::Normal : this->WindowState = FormWindowState::Maximized;
-			killme = !killme;
-		}
-		System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->WindowState = FormWindowState::Minimized;
-		}
-		System::Void btnClose_Click(System::Object^ sender, System::EventArgs^ e) {
-			this->Close();
-		}
-		
-		// HOTKEYS
-		System::Void frmMain_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
-							// 'A' 'b'
-			if (e->KeyChar == (char)27) this->Close();
-		}
-
-	private:
 		int DDPosXStart, DDPosYStart;
 		int DDPosX, DDPosY;
 		System::Void lblCurrentTime_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
@@ -510,7 +514,16 @@ namespace Desctoper {
 		System::Void lblCurrentTime_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 			DDIsMove = false; tmrTime->Enabled = true; aboardCheck(lblCurrentTime);
 		}
+		////////////// LBL_TIME
+		///////////////////////////////////
 
+
+
+
+
+		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+			this->WindowState = (this->WindowState == FormWindowState::Normal ? FormWindowState::Maximized : FormWindowState::Normal);
+		}
 		System::Void frmMain_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 			//
 		}
@@ -518,9 +531,9 @@ namespace Desctoper {
 
 
 
-
-
 	public:
+		///////////////////////////////////
+		////////////// USER FUNCTIONS
 		bool aboardCheck(System::Windows::Forms::Label^ lbl) {
 			bool cond =
 				(lbl->Left > this->Width - 10) || (lbl->Top > this->Height - 20);
@@ -546,7 +559,8 @@ namespace Desctoper {
 			UICompState = state;
 			pbx->Refresh();
 		}
-
+		////////////// USER FUNCTIONS
+		///////////////////////////////////
 
 
 

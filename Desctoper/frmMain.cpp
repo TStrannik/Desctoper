@@ -40,7 +40,7 @@ void APPLICATION_END() {
 
 
 
-/// ver 0.0.0
+/// ver 0.1.0
 int main(array<String^>^ args) {
 	APPLICATION_START();
 	APPLICATION_FORM();
