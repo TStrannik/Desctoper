@@ -68,7 +68,14 @@ namespace Desctoper {
 	private: System::Windows::Forms::PictureBox^ pbxFile;
 	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
 	private: ClassLibraryUI::uiButton^ uiButton1;
-	private: ClassLibraryUI::uiButton^ uiButton2;
+
+
+
+
+
+
+
+
 
 
 
@@ -98,9 +105,9 @@ namespace Desctoper {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea6 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->tmrDisplayRequired = (gcnew System::Windows::Forms::Timer(this->components));
 			this->lblCurrentTime = (gcnew System::Windows::Forms::Label());
 			this->tmrTime = (gcnew System::Windows::Forms::Timer(this->components));
@@ -113,7 +120,6 @@ namespace Desctoper {
 			this->pbxFile = (gcnew System::Windows::Forms::PictureBox());
 			this->ofdBack = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->uiButton1 = (gcnew ClassLibraryUI::uiButton());
-			this->uiButton2 = (gcnew ClassLibraryUI::uiButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
@@ -151,16 +157,16 @@ namespace Desctoper {
 			// 
 			// chart1
 			// 
-			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
-			legend1->Name = L"Legend1";
-			this->chart1->Legends->Add(legend1);
+			chartArea6->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea6);
+			legend6->Name = L"Legend1";
+			this->chart1->Legends->Add(legend6);
 			this->chart1->Location = System::Drawing::Point(19, 12);
 			this->chart1->Name = L"chart1";
-			series1->ChartArea = L"ChartArea1";
-			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
-			this->chart1->Series->Add(series1);
+			series6->ChartArea = L"ChartArea1";
+			series6->Legend = L"Legend1";
+			series6->Name = L"Series1";
+			this->chart1->Series->Add(series6);
 			this->chart1->Size = System::Drawing::Size(310, 182);
 			this->chart1->TabIndex = 2;
 			this->chart1->Text = L"chart1";
@@ -179,6 +185,7 @@ namespace Desctoper {
 			this->button1->Size = System::Drawing::Size(50, 50);
 			this->button1->TabIndex = 3;
 			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Visible = false;
 			this->button1->Click += gcnew System::EventHandler(this, &frmMain::button1_Click);
 			// 
 			// label1
@@ -243,28 +250,18 @@ namespace Desctoper {
 			// uiButton1
 			// 
 			this->uiButton1->BackColor = System::Drawing::Color::Tomato;
-			this->uiButton1->Font = (gcnew System::Drawing::Font(L"Arial", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
+			this->uiButton1->ColorEnterBack = System::Drawing::Color::Black;
+			this->uiButton1->ColorEnterBord = System::Drawing::Color::Black;
+			this->uiButton1->ColorEnterText = System::Drawing::Color::White;
+			this->uiButton1->ColorLeaveBack = System::Drawing::Color::Tomato;
+			this->uiButton1->ColorLeaveBord = System::Drawing::Color::Maroon;
+			this->uiButton1->ColorLeaveText = System::Drawing::Color::Maroon;
 			this->uiButton1->ForeColor = System::Drawing::Color::White;
-			this->uiButton1->Location = System::Drawing::Point(19, 239);
-			this->uiButton1->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
+			this->uiButton1->Location = System::Drawing::Point(29, 252);
 			this->uiButton1->Name = L"uiButton1";
-			this->uiButton1->Nejnost = 10;
+			this->uiButton1->Radius = 0;
 			this->uiButton1->Size = System::Drawing::Size(100, 30);
 			this->uiButton1->TabIndex = 10;
-			// 
-			// uiButton2
-			// 
-			this->uiButton2->BackColor = System::Drawing::Color::Tomato;
-			this->uiButton2->Font = (gcnew System::Drawing::Font(L"Arial", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->uiButton2->ForeColor = System::Drawing::Color::White;
-			this->uiButton2->Location = System::Drawing::Point(19, 292);
-			this->uiButton2->Margin = System::Windows::Forms::Padding(4, 3, 4, 3);
-			this->uiButton2->Name = L"uiButton2";
-			this->uiButton2->Nejnost = 10;
-			this->uiButton2->Size = System::Drawing::Size(186, 55);
-			this->uiButton2->TabIndex = 11;
 			// 
 			// frmMain
 			// 
@@ -272,7 +269,6 @@ namespace Desctoper {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::DarkGray;
 			this->ClientSize = System::Drawing::Size(844, 495);
-			this->Controls->Add(this->uiButton2);
 			this->Controls->Add(this->uiButton1);
 			this->Controls->Add(this->pbxFile);
 			this->Controls->Add(this->pbxClose);
@@ -332,8 +328,8 @@ namespace Desctoper {
 			this->Left = 1920 - this->Width - 5; this->Top = 500;
 
 			uiButton1->Text = L"Gava-gava";
-			uiButton2->Text = L"Hello, World!";
-			uiButton2->Nejnost = 15;
+			/*uiButton2->Text = L"Hello, World!";
+			uiButton2->Nejnost = 15;*/
 
 		}
 		System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -530,6 +526,16 @@ namespace Desctoper {
 
 
 
+		private: System::Void uiButton2_Click(System::Object^ sender, System::EventArgs^ e) {
+			MessageBox::Show(L"GAVJA");
+		}
+
+
+
+
+
+
+
 
 	public:
 		///////////////////////////////////
@@ -561,6 +567,7 @@ namespace Desctoper {
 		}
 		////////////// USER FUNCTIONS
 		///////////////////////////////////
+
 
 
 
