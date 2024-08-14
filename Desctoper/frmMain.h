@@ -67,7 +67,19 @@ namespace Desctoper {
 	private: System::Windows::Forms::Timer^ tmrTime;
 	private: System::Windows::Forms::PictureBox^ pbxFile;
 	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
-	private: ClassLibraryUI::uiButton^ uiButton1;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -105,9 +117,9 @@ namespace Desctoper {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea6 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea34 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend34 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series34 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->tmrDisplayRequired = (gcnew System::Windows::Forms::Timer(this->components));
 			this->lblCurrentTime = (gcnew System::Windows::Forms::Label());
 			this->tmrTime = (gcnew System::Windows::Forms::Timer(this->components));
@@ -119,7 +131,6 @@ namespace Desctoper {
 			this->pbxClose = (gcnew System::Windows::Forms::PictureBox());
 			this->pbxFile = (gcnew System::Windows::Forms::PictureBox());
 			this->ofdBack = (gcnew System::Windows::Forms::OpenFileDialog());
-			this->uiButton1 = (gcnew ClassLibraryUI::uiButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
@@ -157,16 +168,16 @@ namespace Desctoper {
 			// 
 			// chart1
 			// 
-			chartArea6->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea6);
-			legend6->Name = L"Legend1";
-			this->chart1->Legends->Add(legend6);
+			chartArea34->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea34);
+			legend34->Name = L"Legend1";
+			this->chart1->Legends->Add(legend34);
 			this->chart1->Location = System::Drawing::Point(19, 12);
 			this->chart1->Name = L"chart1";
-			series6->ChartArea = L"ChartArea1";
-			series6->Legend = L"Legend1";
-			series6->Name = L"Series1";
-			this->chart1->Series->Add(series6);
+			series34->ChartArea = L"ChartArea1";
+			series34->Legend = L"Legend1";
+			series34->Name = L"Series1";
+			this->chart1->Series->Add(series34);
 			this->chart1->Size = System::Drawing::Size(310, 182);
 			this->chart1->TabIndex = 2;
 			this->chart1->Text = L"chart1";
@@ -247,29 +258,12 @@ namespace Desctoper {
 			// 
 			this->ofdBack->FileName = L"openFileDialog1";
 			// 
-			// uiButton1
-			// 
-			this->uiButton1->BackColor = System::Drawing::Color::Tomato;
-			this->uiButton1->ColorEnterBack = System::Drawing::Color::Black;
-			this->uiButton1->ColorEnterBord = System::Drawing::Color::Black;
-			this->uiButton1->ColorEnterText = System::Drawing::Color::White;
-			this->uiButton1->ColorLeaveBack = System::Drawing::Color::Tomato;
-			this->uiButton1->ColorLeaveBord = System::Drawing::Color::Maroon;
-			this->uiButton1->ColorLeaveText = System::Drawing::Color::Maroon;
-			this->uiButton1->ForeColor = System::Drawing::Color::White;
-			this->uiButton1->Location = System::Drawing::Point(29, 252);
-			this->uiButton1->Name = L"uiButton1";
-			this->uiButton1->Radius = 0;
-			this->uiButton1->Size = System::Drawing::Size(100, 30);
-			this->uiButton1->TabIndex = 10;
-			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::DarkGray;
 			this->ClientSize = System::Drawing::Size(844, 495);
-			this->Controls->Add(this->uiButton1);
 			this->Controls->Add(this->pbxFile);
 			this->Controls->Add(this->pbxClose);
 			this->Controls->Add(this->lblCurrentTime);
@@ -326,10 +320,6 @@ namespace Desctoper {
 			////////////// DEFAULTS VALUES SET
 			dateTimePos = DT_POS_LEFT; DDIsMove = false; UICompState = CS_LEAVE;
 			this->Left = 1920 - this->Width - 5; this->Top = 500;
-
-			uiButton1->Text = L"Gava-gava";
-			/*uiButton2->Text = L"Hello, World!";
-			uiButton2->Nejnost = 15;*/
 
 		}
 		System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {

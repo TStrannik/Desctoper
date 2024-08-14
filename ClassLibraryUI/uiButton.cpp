@@ -15,7 +15,7 @@ void uiButton::uiCostructor() {
 	);
 	DoubleBuffered = true;
 
-	BackColor = Color::Tomato;
+	BackColor = Color::Black;
 	ForeColor = Color::White;
 
 	SF->Alignment	  = StringAlignment::Center;
