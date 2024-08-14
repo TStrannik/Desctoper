@@ -28,7 +28,13 @@ namespace ClassLibraryUI {
 		}
 
 		void uiCostructor();
+
 		
+		// property int Radius;
+		property int Nejnost;
+
+
+	
 
 	protected:
 		/// <summary>
@@ -62,11 +68,10 @@ namespace ClassLibraryUI {
 			// uiButton
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;		// :None;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Name = L"uiButton";
-			this->Text = L"uiButton";
+			this->Text = L"SampleText";
 			this->Size = System::Drawing::Size(100, 30);
-			this->Font = gcnew System::Drawing::Font("Arial", 8, FontStyle::Italic);
 			this->Load += gcnew System::EventHandler(this, &uiButton::uiButton_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &uiButton::uiButton_Paint);
 			this->ResumeLayout(false);
@@ -80,36 +85,20 @@ namespace ClassLibraryUI {
 	private: System::Void uiButton_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 		//this->OnPaint(e);
 
-		Graphics^ g		 = e->Graphics;
-		g->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::HighQuality;	// :AntiAlias;
-		g->Clear(Parent->BackColor);												// Color::Black)
-		Pen^	   pen   = gcnew Pen(BackColor);
-		Brush^     brush = gcnew SolidBrush(BackColor);
-		RectangleF^ rect  = gcnew RectangleF(0.0f, 0.0f, Width - 1, Height - 1);
-		//g->DrawRectangle(pen, rect);
-		g->DrawRectangle(pen, 0, 0, Width - 1, Height - 1);							// (pen, 0, 0, rect);
-		g->FillRectangle(brush, 0, 0, Width - 1, Height - 1);
+		Graphics^ g		  = e->Graphics;
 
+		int w = Width - 1, h = Height - 1;
+		Pen^	   pen	  = gcnew Pen(BackColor);
+		Brush^	   bBrush = gcnew SolidBrush(BackColor);
+		Brush^     fBrush = gcnew SolidBrush(ForeColor);
+		Rectangle^ rect   = gcnew Rectangle(0, 0, w, h);
 
-		int w = Width - 1;
-		int h = Height - 1;
-
-		//System::Drawing::Font^ fnt = gcnew System::Drawing::Font("Arial", 20, FontStyle::Bold);
-
-		//g->DrawString(Text, Font, gcnew SolidBrush(ForeColor), rect, SF);
-
-
-		//std::cout << Text << std::endl;
-
-		g->DrawString(Text, Font, gcnew SolidBrush(ForeColor), 0, 0, SF);
-
-		/*g->DrawString(
-			this->Text,
-			this->Font,
-			gcnew SolidBrush(ForeColor),
-			gcnew Rectangle(0, 0, Width - 1, Height - 1),
-			SF
-		);*/
+		g->SmoothingMode  = System::Drawing::Drawing2D::SmoothingMode::HighQuality;	// :AntiAlias;
+		g->Clear(Parent->BackColor);				
+		g->DrawRectangle(pen, 0, 0, w, h);							// (pen, 0, 0, rect);
+		g->FillRectangle(bBrush, 0, 0, w, h);
+		g->DrawString(Text, Font, fBrush, (int)w / 2, (int)h / 2, SF);		// Не раб rect
+		
 		
 	}
 

@@ -18,8 +18,10 @@ void uiButton::uiCostructor() {
 	BackColor = Color::Tomato;
 	ForeColor = Color::White;
 
-
-	
 	SF->Alignment	  = StringAlignment::Center;
 	SF->LineAlignment = StringAlignment::Center;
+
+
+	
+
 }
