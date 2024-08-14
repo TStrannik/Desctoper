@@ -38,13 +38,14 @@ namespace ClassLibraryUI {
 
 		
 	public:
-		property int   BorderRadius;
-		property Color ColorLeaveBack;
-		property Color ColorLeaveBord;
-		property Color ColorLeaveText;
-		property Color ColorEnterBack;
-		property Color ColorEnterBord;
-		property Color ColorEnterText;
+		//property String Caption;
+		property int    BorderRadius;
+		property Color  ColorLeaveBack;
+		property Color  ColorLeaveBord;
+		property Color  ColorLeaveText;
+		property Color  ColorEnterBack;
+		property Color  ColorEnterBord;
+		property Color  ColorEnterText;
 		
 
 	private:
@@ -90,6 +91,7 @@ namespace ClassLibraryUI {
 
 			this->BorderRadius   = 5;
 			this->Text = L"SampleText";
+			/*this->Caption = L"SampleText";*/
 			this->ColorEnterBord = Color::Black;
 			this->ColorEnterBack = Color::Black;
 			this->ColorEnterText = Color::White;
@@ -121,6 +123,10 @@ namespace ClassLibraryUI {
 			Pen^   lbdPen   = gcnew Pen  	  (ColorLeaveBord);
 			Brush^ lbkBrush = gcnew SolidBrush(ColorLeaveBack);
 			Brush^ ltxBrush = gcnew SolidBrush(ColorLeaveText);
+
+			Pen^	 bdPen = gcnew Pen(ForeColor);
+			Brush^ bkBrush = gcnew SolidBrush(BackColor);
+			Brush^ txBrush = gcnew SolidBrush(BackColor);
 			
 			g->SmoothingMode  = System::Drawing::Drawing2D::SmoothingMode::HighQuality;	// :AntiAlias;
 			g->Clear(Parent->BackColor);				
@@ -128,43 +134,48 @@ namespace ClassLibraryUI {
 
 			int r = BorderRadius;
 
+
+			//// DRY!!!!
+
+
 			switch (UICompState) {
 			case CS_LEAVE:
-				if (r == 0) {
-					g->DrawRectangle(lbdPen, 0, 0, w, h);
-					g->FillRectangle(lbkBrush, 0, 0, w, h);
-				} else {
-					Drawing2D::GraphicsPath^ gp = gcnew Drawing2D::GraphicsPath();
-
-					//g->DrawLine(lbdPen, r, 0, w - r, 0); g->DrawArc(lbdPen, w - r * 2, 0, r * 2, h, -90,  180);
-					//g->DrawLine(lbdPen, r, h, w - r, h); g->DrawArc(lbdPen, 0,         0, r * 2, h, -90, -180);
-
-					g->DrawLine(lbdPen, r, 0, w-r, 0); 
-					g->DrawArc(lbdPen, w-r*2, 0, r*2, r*2, 270, 90);
-					g->DrawLine(lbdPen, w, r, w, h-r); 
-					g->DrawArc(lbdPen, w-r*2, h-r*2, r * 2, r * 2, 360, 90);
-					g->DrawLine(lbdPen, w - r, h, r, h);
-					g->DrawArc(lbdPen, 0, h-r*2, r*2, r*2, 90, 90);
-					g->DrawLine(lbdPen, 0, h - r, 0, r);
-					g->DrawArc(lbdPen, 0, 0, r*2, r*2, 180, 90);
-
-					//g->DrawClosedCurve();
-
-					//gp->CloseFigure();
-
-				}
-				
-
-
-				
-				g->DrawString(Text, Font, ltxBrush, (int)(w / 2), (int)(h / 2), SF);
+				bdPen = lbdPen; bkBrush = lbkBrush; txBrush = ltxBrush;
 			break;
 			case CS_ENTER:
-				g->DrawRectangle(ebdPen, 0, 0, w, h);
-				g->FillRectangle(ebkBrush, 0, 0, w, h);
-				g->DrawString(Text, Font, etxBrush, (int)(w / 2), (int)(h / 2), SF);
+				bdPen = ebdPen; bkBrush = ebkBrush; txBrush = etxBrush;
 			break;
 			}
+
+			if (r == 0) {
+				g->DrawRectangle(bdPen, 0, 0, w, h);
+				g->FillRectangle(bkBrush, 0, 0, w, h);
+			} else {
+				Drawing2D::GraphicsPath^ gp = gcnew Drawing2D::GraphicsPath();
+
+				g->DrawLine(bdPen, r, 0, w - r, 0);
+				g->DrawArc(bdPen, w - r * 2, 0, r * 2, r * 2, 270, 90);
+				g->DrawLine(bdPen, w, r, w, h - r);
+				g->DrawArc(bdPen, w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
+				g->DrawLine(bdPen, w - r, h, r, h);
+				g->DrawArc(bdPen, 0, h - r * 2, r * 2, r * 2, 90, 90);
+				g->DrawLine(bdPen, 0, h - r, 0, r);
+				g->DrawArc(bdPen, 0, 0, r * 2, r * 2, 180, 90);
+
+				gp->AddLine(r, 0, w - r, 0);
+				gp->AddArc(w - r * 2, 0, r * 2, r * 2, 270, 90);
+				gp->AddLine(w, r, w, h - r);
+				gp->AddArc(w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
+				gp->AddLine(w - r, h, r, h);
+				gp->AddArc(0, h - r * 2, r * 2, r * 2, 90, 90);
+				gp->AddLine(0, h - r, 0, r);
+				gp->AddArc(0, 0, r * 2, r * 2, 180, 90);
+				gp->CloseFigure();
+
+				g->FillPath(bkBrush, gp);
+			}
+			g->DrawString(Text, Font, txBrush, (int)(w / 2), (int)(h / 2), SF);
+
 		}
 		System::Void uiButton_MouseEnter(System::Object^ sender, System::EventArgs^ e) { UICompState = CS_ENTER; Invalidate(); }
 		System::Void uiButton_MouseLeave(System::Object^ sender, System::EventArgs^ e) { UICompState = CS_LEAVE; Invalidate(); }
