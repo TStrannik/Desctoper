@@ -2,6 +2,8 @@
 #include <Windows.h>
 #include <string>
 
+//#include "ytButton.h"
+
 const int DT_POS_LEFT   = 0x00;
 const int DT_POS_RIGHT  = 0x01;
 const int DT_POS_MIDDLE = 0x02;
@@ -64,6 +66,7 @@ namespace Desctoper {
 	private: System::Windows::Forms::Timer^ tmrTime;
 	private: System::Windows::Forms::PictureBox^ pbxFile;
 	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
+	private: ClassLibraryUI::uiButton^ uiButton1;
 
 
 
@@ -106,6 +109,7 @@ namespace Desctoper {
 			this->pbxClose = (gcnew System::Windows::Forms::PictureBox());
 			this->pbxFile = (gcnew System::Windows::Forms::PictureBox());
 			this->ofdBack = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->uiButton1 = (gcnew ClassLibraryUI::uiButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
@@ -233,12 +237,20 @@ namespace Desctoper {
 			// 
 			this->ofdBack->FileName = L"openFileDialog1";
 			// 
+			// uiButton1
+			// 
+			this->uiButton1->Location = System::Drawing::Point(19, 239);
+			this->uiButton1->Name = L"uiButton1";
+			this->uiButton1->Size = System::Drawing::Size(100, 30);
+			this->uiButton1->TabIndex = 10;
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::IndianRed;
+			this->BackColor = System::Drawing::Color::DarkGray;
 			this->ClientSize = System::Drawing::Size(844, 495);
+			this->Controls->Add(this->uiButton1);
 			this->Controls->Add(this->pbxFile);
 			this->Controls->Add(this->pbxClose);
 			this->Controls->Add(this->lblCurrentTime);
@@ -278,12 +290,26 @@ namespace Desctoper {
 		System::Void frmMain_Load(System::Object^ sender, System::EventArgs^ e) {
 			std::cout << "\tfrmMain start\n";
 
+
+			SetStyle(
+				ControlStyles::AllPaintingInWmPaint |
+				ControlStyles::OptimizedDoubleBuffer |
+				ControlStyles::ResizeRedraw |
+				ControlStyles::SupportsTransparentBackColor |
+				ControlStyles::UserPaint, true
+			);
+			
+			DoubleBuffered = true;
+
+
 			//xxxx
 			killme = true;
 
 			// DEFAULTS VALUES
 			dateTimePos = DT_POS_LEFT; DDIsMove = false; UICompState = CS_LEAVE;
 			this->Left = 1920 - this->Width - 5; this->Top = 500;
+
+			//uiButton1->Text = L"Gava-gava";
 		}
 
 		System::Void frmMain_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
@@ -339,8 +365,8 @@ namespace Desctoper {
 			case CS_LEAVE:
 				g->DrawLine(pen3bk, 15, 10, 35, 10); g->DrawArc(pen3bk, 30, 10, 10, 10, 260,  100);
 				g->DrawLine(pen3bk, 40, 15, 40, 35); g->DrawArc(pen3bk, 30, 30, 10, 10, 350,  100);
-				g->DrawLine(pen3bk, 15, 40, 38, 40); g->DrawArc(pen3bk, 10, 30, 10, 10, 170, -100);
-				g->DrawLine(pen3bk, 10, 15, 10, 35); g->DrawArc(pen3bk, 10, 10, 10, 10, 180,  90);
+				g->DrawLine(pen3bk, 15, 40, 38, 40); g->DrawArc(pen3bk, 10, 30, 10, 10, 170, -90);
+				g->DrawLine(pen3bk, 10, 15, 10, 35); g->DrawArc(pen3bk, 10, 10, 10, 10, 180,  80);
 
 				g->DrawLine(pen3bk, 30, 18, 40, 18); g->DrawLine(pen3bk, 25, 10, 30, 18);
 				break;
