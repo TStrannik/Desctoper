@@ -66,9 +66,7 @@ namespace Desctoper {
 	private: System::Windows::Forms::PictureBox^ pbxFile;
 	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
 
-
-
-	private: System::ComponentModel::IContainer^ components;
+  private: System::ComponentModel::IContainer^ components;
 
 
 	protected:
