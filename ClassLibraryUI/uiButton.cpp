@@ -21,14 +21,7 @@ void uiButton::uiCostructor() {
 	SF->Alignment	  = StringAlignment::Center;
 	SF->LineAlignment = StringAlignment::Center;
 
-
-	Font = (
-		gcnew System::Drawing::Font(
-			"Arial",
-			10,
-			FontStyle::Bold
-		)
-	);
+	Font = (gcnew System::Drawing::Font("Arial", 10, FontStyle::Bold));
 
 	Text = L"SampleText";
 	Caption = L"SampleText";

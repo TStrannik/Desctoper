@@ -24,9 +24,11 @@ namespace ClassLibraryUI {
 			InitializeComponent();
 		}
 		void uiCostructor();
+		bool Toggle();
+		bool HideMenu();
 
 	public:
-		bool			 MenuOpen;
+		property bool	 MenuOpen;
 		property int     WidthStart;
 		property int     HeightStart;
 		property int     WidthFinal;
@@ -38,9 +40,11 @@ namespace ClassLibraryUI {
 		property Color   ColorLeaveBord;
 		property Color   ColorLeaveText;
 
+		
+
 	private:
 		Thread^ AnimThread;
-
+		StringFormat^ SF = gcnew StringFormat;
 
 
 #pragma region DESTR
@@ -74,10 +78,9 @@ namespace ClassLibraryUI {
 			// 
 			// uiPanelMenu
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
 			this->Name = L"uiPanelMenu";
-			this->Size = System::Drawing::Size(10, 10);
+			this->Size = System::Drawing::Size(20, 300);
 			this->Load += gcnew System::EventHandler(this, &uiPanelMenu::uiPanelMenu_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &uiPanelMenu::uiPanelMenu_Paint);
 			this->MouseEnter += gcnew System::EventHandler(this, &uiPanelMenu::uiPanelMenu_MouseEnter);
@@ -89,7 +92,7 @@ namespace ClassLibraryUI {
 #pragma region VOIDS
 	private: 
 		System::Void uiPanelMenu_Load(System::Object^ sender, System::EventArgs^ e) {
-			//
+			Text = Caption;
 		}
 		System::Void uiPanelMenu_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;
@@ -106,40 +109,28 @@ namespace ClassLibraryUI {
 			g->DrawRectangle(lbdPen, 0, 0, w, h);
 			g->FillRectangle(lbkBrush, 0, 0, w, h);
 	
-
-
 			//Width  = (MenuOpen ? WidthFinal  : WidthStart );
 			//Height = (MenuOpen ? HeightFinal : HeightStart);
 
 			if (MenuOpen) {
-				if (Width <= WidthFinal) Width += WidthFinal / 16;
-				if (Height <= HeightFinal) Height += HeightFinal / 16;
+				if (Width <= WidthFinal) Width += 20;
+				
+			} else {
+				if (Width >= WidthStart) Width -= 20;
+				
 			}
-			else {
-				if (Width >= WidthStart) Width -= WidthFinal / 16;
-				if (Height >= HeightStart) Height -= HeightFinal / 16;
+			Thread::Sleep(1);
+
+			if (MenuOpen) {
+				g->DrawString(Text, Font, ltxBrush, (int)(w / 2), 5 + Font->Size, SF);
 			}
 
-			Thread::Sleep(5);
-
-			//g->DrawString(Text, Font, ltxBrush, (int)(w / 2), (int)(h / 2));
-			
+			Visible = !(Width == WidthStart);			
 		}
 
-		System::Void uiPanelMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-			//MenuOpen = true;
-			std::cout << "\tuiPanelMenu_MouseEnter\n";
-
-			
-
-			Invalidate();
-
-
-		}
+		System::Void uiPanelMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) { Invalidate(); }
 
 #pragma endregion VOIDS
-
-	
 	
 	};
 }

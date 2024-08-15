@@ -74,15 +74,6 @@ namespace Desctoper {
 	private: ClassLibraryUI::uiPanelMenu^ uiPanelMenu1;
 
 
-
-
-
-
-
-
-
-
-
   private: System::ComponentModel::IContainer^ components;
 
 
@@ -243,25 +234,27 @@ namespace Desctoper {
 			// 
 			this->uiPanelMenu1->BackColor = System::Drawing::Color::Blue;
 			this->uiPanelMenu1->BorderRadius = 10;
-			this->uiPanelMenu1->Caption = nullptr;
-			this->uiPanelMenu1->ColorLeaveBack = System::Drawing::Color::Transparent;
-			this->uiPanelMenu1->ColorLeaveBord = System::Drawing::Color::Tomato;
-			this->uiPanelMenu1->ColorLeaveText = System::Drawing::Color::Tomato;
+			this->uiPanelMenu1->Caption = L"Settings";
+			this->uiPanelMenu1->ColorLeaveBack = System::Drawing::Color::White;
+			this->uiPanelMenu1->ColorLeaveBord = System::Drawing::Color::Black;
+			this->uiPanelMenu1->ColorLeaveText = System::Drawing::Color::Black;
+			this->uiPanelMenu1->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Bold));
 			this->uiPanelMenu1->ForeColor = System::Drawing::Color::White;
 			this->uiPanelMenu1->HeightFinal = 300;
-			this->uiPanelMenu1->HeightStart = 10;
-			this->uiPanelMenu1->Location = System::Drawing::Point(3, 71);
+			this->uiPanelMenu1->HeightStart = 300;
+			this->uiPanelMenu1->Location = System::Drawing::Point(3, 56);
+			this->uiPanelMenu1->MenuOpen = true;
 			this->uiPanelMenu1->Name = L"uiPanelMenu1";
-			this->uiPanelMenu1->Size = System::Drawing::Size(83, 42);
+			this->uiPanelMenu1->Size = System::Drawing::Size(401, 300);
 			this->uiPanelMenu1->TabIndex = 11;
 			this->uiPanelMenu1->WidthFinal = 400;
-			this->uiPanelMenu1->WidthStart = 10;
+			this->uiPanelMenu1->WidthStart = 20;
 			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::White;
+			this->BackColor = System::Drawing::Color::RosyBrown;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(844, 495);
 			this->Controls->Add(this->uiPanelMenu1);
@@ -322,6 +315,10 @@ namespace Desctoper {
 			dateTimePos = DT_POS_LEFT; DDIsMove = false; UICompState = CS_LEAVE;
 			this->Left = 1920 - this->Width - 5; this->Top = 500;
 
+			// CYRILLIC!!!!
+			//uiPanelMenu1->Text = u8"Settings";
+			uiPanelMenu1->HideMenu();
+			
 		}
 		System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->WindowState = FormWindowState::Minimized;
@@ -432,11 +429,7 @@ namespace Desctoper {
 		///////////////////////////////////
 		////////////// CLOSE/FILE
 		System::Void pbxSetting_Click(System::Object^ sender, System::EventArgs^ e) {
-			//
-			//uiPanelMenu1->Text = L"We are the Robots";
-
-			uiPanelMenu1->MenuOpen = !uiPanelMenu1->MenuOpen;
-			uiPanelMenu1->Refresh(); // Invalidate();
+			uiPanelMenu1->Toggle();
 		}
 		System::Void pbxSetting_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;
@@ -610,13 +603,6 @@ namespace Desctoper {
 		////////////// USER FUNCTIONS
 		///////////////////////////////////
 		#pragma	endregion
-
-
-
-
-
-
-
 
 };
 

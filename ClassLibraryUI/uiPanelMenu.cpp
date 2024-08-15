@@ -3,8 +3,9 @@
 
 using namespace ClassLibraryUI;
 
+
 void uiPanelMenu::uiCostructor() {
-	//System::Drawing::Size^ Size = System::Drawing::Size(30, 100); //C# Size = new Size(100, 30);
+	System::Drawing::Size^ Size = System::Drawing::Size(40, 300); //C# Size = new Size(100, 30);
 
 	SetStyle(
 		ControlStyles::AllPaintingInWmPaint |
@@ -15,24 +16,50 @@ void uiPanelMenu::uiCostructor() {
 	);
 	DoubleBuffered = true;
 
-	//BackColor = Color::Transparent;
-	/*BackColor = Color::LavenderBlush;*/
+
+	SF->Alignment = StringAlignment::Center;
+	SF->LineAlignment = StringAlignment::Center;
+
+	Font = (gcnew System::Drawing::Font("Arial", 10, FontStyle::Bold));
+
 	BackColor = Color::Blue;
 	ForeColor = Color::White;
 
 	BorderRadius = 10;
-	ColorLeaveBord = Color::Tomato;
-	ColorLeaveBack = Color::Transparent;
-	ColorLeaveText = Color::Tomato;
+	ColorLeaveBord = Color::Black;
+	ColorLeaveBack = Color::White;
+	ColorLeaveText = Color::Black;
 
 	/*ColorEnterBord = Color::White;
 	ColorEnterBack = Color::Tomato;
 	ColorEnterText = Color::White;*/
 
-	MenuOpen     = false;
-	WidthStart   = 10;
-	HeightStart  = 10;
+	Text = L"Caption";
+	Caption = L"Caption";
+
+	Width = 20;
+	Height = 300;
+
+	MenuOpen     = true;
+	WidthStart   = 20;
+	HeightStart  = 300;
 	WidthFinal	 = 400;
 	HeightFinal  = 300;
+}
 
+
+bool uiPanelMenu::Toggle() {
+	MenuOpen = !MenuOpen;
+	Refresh();
+	Visible = true;
+
+	return MenuOpen;
+}
+
+bool uiPanelMenu::HideMenu() {
+	//Width = 20;
+	MenuOpen = false;
+	Refresh();
+
+	return true;
 }
