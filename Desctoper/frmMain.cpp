@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <iostream>
 
+
 //#include "powrprof.h"
 //using namespace System::Runtime::InteropServices;
 
@@ -37,7 +38,7 @@ void APPLICATION_END() {
 
 
 
-/// ver 0.0.0
+/// ver 0.2.0
 int main(array<String^>^ args) {
 	APPLICATION_START();
 	APPLICATION_FORM();
@@ -45,3 +46,7 @@ int main(array<String^>^ args) {
 	return 0;
 }
 
+
+
+
+/// make beautiful UI\UX openFileDialog

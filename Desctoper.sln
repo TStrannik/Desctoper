@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Desctoper", "Desctoper\Desctoper.vcxproj", "{2B06B065-2312-456F-87D0-385104851885}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClassLibraryUI", "ClassLibraryUI\ClassLibraryUI.vcxproj", "{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{2B06B065-2312-456F-87D0-385104851885}.Release|x64.Build.0 = Release|x64
 		{2B06B065-2312-456F-87D0-385104851885}.Release|x86.ActiveCfg = Release|Win32
 		{2B06B065-2312-456F-87D0-385104851885}.Release|x86.Build.0 = Release|Win32
+		{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}.Debug|x64.ActiveCfg = Debug|x64
+		{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}.Debug|x64.Build.0 = Debug|x64
+		{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}.Debug|x86.ActiveCfg = Debug|Win32
+		{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}.Debug|x86.Build.0 = Debug|Win32
+		{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}.Release|x64.ActiveCfg = Release|x64
+		{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}.Release|x64.Build.0 = Release|x64
+		{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}.Release|x86.ActiveCfg = Release|Win32
+		{50E7FA9A-433A-4A00-95A9-9C54A6B2C83D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
