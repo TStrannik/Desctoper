@@ -125,6 +125,9 @@
     <ClInclude Include="uiButton.h">
       <FileType>CppControl</FileType>
     </ClInclude>
+    <ClInclude Include="uiPanelMenu.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
@@ -136,6 +139,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="uiButton.cpp" />
+    <ClCompile Include="uiPanelMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
@@ -153,6 +157,9 @@
   <ItemGroup>
     <EmbeddedResource Include="uiButton.resx">
       <DependentUpon>uiButton.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="uiPanelMenu.resx">
+      <DependentUpon>uiPanelMenu.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

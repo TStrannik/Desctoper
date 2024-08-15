@@ -71,6 +71,15 @@ namespace Desctoper {
 	private: System::Windows::Forms::PictureBox^ pbxFile;
 	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
 	private: System::Windows::Forms::PictureBox^ pbxSetting;
+	private: ClassLibraryUI::uiPanelMenu^ uiPanelMenu1;
+
+
+
+
+
+
+
+
 
 
 
@@ -107,6 +116,7 @@ namespace Desctoper {
 			this->pbxFile = (gcnew System::Windows::Forms::PictureBox());
 			this->ofdBack = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->pbxSetting = (gcnew System::Windows::Forms::PictureBox());
+			this->uiPanelMenu1 = (gcnew ClassLibraryUI::uiPanelMenu());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxSetting))->BeginInit();
@@ -229,13 +239,32 @@ namespace Desctoper {
 			this->pbxSetting->MouseEnter += gcnew System::EventHandler(this, &frmMain::pbxSetting_MouseEnter);
 			this->pbxSetting->MouseLeave += gcnew System::EventHandler(this, &frmMain::pbxSetting_MouseLeave);
 			// 
+			// uiPanelMenu1
+			// 
+			this->uiPanelMenu1->BackColor = System::Drawing::Color::Blue;
+			this->uiPanelMenu1->BorderRadius = 10;
+			this->uiPanelMenu1->Caption = nullptr;
+			this->uiPanelMenu1->ColorLeaveBack = System::Drawing::Color::Transparent;
+			this->uiPanelMenu1->ColorLeaveBord = System::Drawing::Color::Tomato;
+			this->uiPanelMenu1->ColorLeaveText = System::Drawing::Color::Tomato;
+			this->uiPanelMenu1->ForeColor = System::Drawing::Color::White;
+			this->uiPanelMenu1->HeightFinal = 300;
+			this->uiPanelMenu1->HeightStart = 10;
+			this->uiPanelMenu1->Location = System::Drawing::Point(3, 71);
+			this->uiPanelMenu1->Name = L"uiPanelMenu1";
+			this->uiPanelMenu1->Size = System::Drawing::Size(83, 42);
+			this->uiPanelMenu1->TabIndex = 11;
+			this->uiPanelMenu1->WidthFinal = 400;
+			this->uiPanelMenu1->WidthStart = 10;
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->BackColor = System::Drawing::Color::RosyBrown;
+			this->BackColor = System::Drawing::Color::White;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(844, 495);
+			this->Controls->Add(this->uiPanelMenu1);
 			this->Controls->Add(this->pbxSetting);
 			this->Controls->Add(this->pbxFile);
 			this->Controls->Add(this->pbxClose);
@@ -404,6 +433,9 @@ namespace Desctoper {
 		////////////// CLOSE/FILE
 		System::Void pbxSetting_Click(System::Object^ sender, System::EventArgs^ e) {
 			//
+			//uiPanelMenu1->Text = L"We are the Robots";
+
+			uiPanelMenu1->MenuOpen = true; uiPanelMenu1->Refresh(); // Invalidate();
 		}
 		System::Void pbxSetting_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;

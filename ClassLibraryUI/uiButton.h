@@ -132,8 +132,6 @@ namespace ClassLibraryUI {
 			int r = BorderRadius;
 
 
-			//// DRY!!!!
-
 			//// Text!!!! Caption
 
 
