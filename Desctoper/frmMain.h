@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <string>
+//#include <fstream>
 
 const int DT_POS_LEFT   = 0x00;
 const int DT_POS_RIGHT  = 0x01;
@@ -14,6 +15,10 @@ const int CS_HOVER		= 0x02;
 
 
 namespace Desctoper {
+
+
+
+	#pragma	region USING etc
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -65,6 +70,8 @@ namespace Desctoper {
 	private: System::Windows::Forms::Timer^ tmrTime;
 	private: System::Windows::Forms::PictureBox^ pbxFile;
 	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
+	private: System::Windows::Forms::PictureBox^ pbxSetting;
+
 
 
   private: System::ComponentModel::IContainer^ components;
@@ -78,7 +85,7 @@ namespace Desctoper {
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-
+	#pragma	endregion
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -103,9 +110,11 @@ namespace Desctoper {
 			this->pbxClose = (gcnew System::Windows::Forms::PictureBox());
 			this->pbxFile = (gcnew System::Windows::Forms::PictureBox());
 			this->ofdBack = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->pbxSetting = (gcnew System::Windows::Forms::PictureBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxSetting))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// tmrDisplayRequired
@@ -144,13 +153,13 @@ namespace Desctoper {
 			this->chart1->ChartAreas->Add(chartArea1);
 			legend1->Name = L"Legend1";
 			this->chart1->Legends->Add(legend1);
-			this->chart1->Location = System::Drawing::Point(19, 12);
+			this->chart1->Location = System::Drawing::Point(29, 239);
 			this->chart1->Name = L"chart1";
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
 			series1->Name = L"Series1";
 			this->chart1->Series->Add(series1);
-			this->chart1->Size = System::Drawing::Size(310, 182);
+			this->chart1->Size = System::Drawing::Size(168, 77);
 			this->chart1->TabIndex = 2;
 			this->chart1->Text = L"chart1";
 			this->chart1->Visible = false;
@@ -179,6 +188,7 @@ namespace Desctoper {
 			this->label1->Size = System::Drawing::Size(35, 13);
 			this->label1->TabIndex = 4;
 			this->label1->Text = L"label1";
+			this->label1->Visible = false;
 			// 
 			// label2
 			// 
@@ -188,6 +198,7 @@ namespace Desctoper {
 			this->label2->Size = System::Drawing::Size(35, 13);
 			this->label2->TabIndex = 5;
 			this->label2->Text = L"label2";
+			this->label2->Visible = false;
 			// 
 			// label3
 			// 
@@ -197,6 +208,7 @@ namespace Desctoper {
 			this->label3->Size = System::Drawing::Size(35, 13);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"label3";
+			this->label3->Visible = false;
 			// 
 			// pbxClose
 			// 
@@ -226,9 +238,15 @@ namespace Desctoper {
 			this->pbxFile->MouseEnter += gcnew System::EventHandler(this, &frmMain::pbxFile_MouseEnter);
 			this->pbxFile->MouseLeave += gcnew System::EventHandler(this, &frmMain::pbxFile_MouseLeave);
 			// 
-			// ofdBack
+			// pbxSetting
 			// 
-			this->ofdBack->FileName = L"openFileDialog1";
+			this->pbxSetting->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->pbxSetting->BackColor = System::Drawing::Color::Transparent;
+			this->pbxSetting->Location = System::Drawing::Point(3, 0);
+			this->pbxSetting->Name = L"pbxSetting";
+			this->pbxSetting->Size = System::Drawing::Size(50, 50);
+			this->pbxSetting->TabIndex = 10;
+			this->pbxSetting->TabStop = false;
 			// 
 			// frmMain
 			// 
@@ -237,6 +255,7 @@ namespace Desctoper {
 			this->BackColor = System::Drawing::Color::RosyBrown;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(844, 495);
+			this->Controls->Add(this->pbxSetting);
 			this->Controls->Add(this->pbxFile);
 			this->Controls->Add(this->pbxClose);
 			this->Controls->Add(this->lblCurrentTime);
@@ -259,6 +278,7 @@ namespace Desctoper {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxSetting))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -275,8 +295,7 @@ namespace Desctoper {
 	private:
 
 
-
-		
+		#pragma region FORM
 		///////////////////////////////////
 		////////////// FORM
 		System::Void frmMain_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -308,7 +327,7 @@ namespace Desctoper {
 			Brush^ br = gcnew SolidBrush(clr->Black);
 			System::Drawing::Font^ fnt = gcnew System::Drawing::Font("Arial", 20, FontStyle::Bold);
 
-			g->DrawString("Desctoper ver 0.2.0", fnt, br, 0, 0);
+			//g->DrawString("Desctoper ver 0.2.0", fnt, br, 0, 0);
 		
 		}
 		////////////// HOTKEYS
@@ -318,13 +337,12 @@ namespace Desctoper {
 		}
 		////////////// FORM
 		///////////////////////////////////
-	
-		
+		#pragma endregion
 
 		
-
+		#pragma region CLOSE/FILE
 		///////////////////////////////////
-		////////////// CLOSE
+		////////////// CLOSE/FILE
 		System::Void pbxClose_Click(System::Object^ sender, System::EventArgs^ e) { this->Close(); }
 		System::Void pbxClose_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g	  = e->Graphics;
@@ -352,8 +370,13 @@ namespace Desctoper {
 		}
 
 		System::Void pbxFile_Click(System::Object^ sender, System::EventArgs^ e) {
-			//ofdBack->ShowDialog(); 
-			//if (ofdBack->ShowDialog() )
+			ofdBack->Filter = "Images|*.jpg;*.jpeg;*.png;*.bmp;";
+			ofdBack->InitialDirectory = CurrentDir + L"\\Sources\\Images\\";
+			if (ofdBack->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				String^ fname;
+				fname = ofdBack->FileName;
+				this->BackgroundImage = Image::FromFile(fname);
+			}			
 		}
 		System::Void pbxFile_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;
@@ -391,12 +414,12 @@ namespace Desctoper {
 		System::Void pbxFile_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
 			UICompStateSwitch(pbxFile, CS_LEAVE);
 		}
-		////////////// FILE
+		////////////// CLOSE/FILE
 		///////////////////////////////////
-	
+		#pragma endregion
 
 
-
+		#pragma region TIMERS
 		///////////////////////////////////
 		////////////// TIMERS
 		System::Void tmrDisplayRequired_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -414,10 +437,10 @@ namespace Desctoper {
 		}
 		////////////// TIMERS
 		///////////////////////////////////
+		#pragma	endregion
 
 
-
-
+		#pragma region LBL_TIME
 		///////////////////////////////////
 		////////////// LBL_TIME
 		System::Void lblCurrentTime_MouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
@@ -479,7 +502,7 @@ namespace Desctoper {
 		}
 		////////////// LBL_TIME
 		///////////////////////////////////
-
+		#pragma	endregion
 
 
 
@@ -505,6 +528,7 @@ namespace Desctoper {
 
 
 	public:
+		#pragma	region USER FUNCTIONS
 		///////////////////////////////////
 		////////////// USER FUNCTIONS
 		bool aboardCheck(System::Windows::Forms::Label^ lbl) {
@@ -534,14 +558,7 @@ namespace Desctoper {
 		}
 		////////////// USER FUNCTIONS
 		///////////////////////////////////
-
-
-
-
-
-
-
-
+		#pragma	endregion
 
 
 

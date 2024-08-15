@@ -39,6 +39,10 @@ namespace ClassLibraryUI {
 		
 	public:
 		//property String Caption;
+
+//#pragma region GAVKA
+//#pragma endregion
+
 		property int     BorderRadius;
 		property String^ Caption;
 		property Color   ColorLeaveBack;
@@ -48,6 +52,7 @@ namespace ClassLibraryUI {
 		property Color   ColorEnterBord;
 		property Color   ColorEnterText;
 		
+
 
 	private:
 		StringFormat^ SF = gcnew StringFormat;		
