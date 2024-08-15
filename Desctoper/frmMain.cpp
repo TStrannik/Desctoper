@@ -10,8 +10,6 @@
 using namespace System;
 using namespace System::Windows::Forms;
 
-[STAThreadAttribute]
-
 
 
 void APPLICATION_START() {
@@ -39,6 +37,7 @@ void APPLICATION_END() {
 
 
 /// ver 0.2.0
+[STAThreadAttribute]
 int main(array<String^>^ args) {
 	APPLICATION_START();
 	APPLICATION_FORM();
