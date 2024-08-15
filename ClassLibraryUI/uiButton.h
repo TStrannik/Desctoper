@@ -85,11 +85,29 @@ namespace ClassLibraryUI {
 			// 
 			// uiButton
 			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Name = L"uiButton";
-			this->Load += gcnew System::EventHandler(this, &uiButton::uiButton_Load_1);
+			this->Size = System::Drawing::Size(100, 30);
+			this->Load += gcnew System::EventHandler(this, &uiButton::uiButton_Load);
+			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &uiButton::uiButton_Paint);
+			this->MouseEnter += gcnew System::EventHandler(this, &uiButton::uiButton_MouseEnter);
+			this->MouseLeave += gcnew System::EventHandler(this, &uiButton::uiButton_MouseLeave);
 			this->ResumeLayout(false);
-
 		}
+
+
+		/*this->Text = L"SampleText";
+		this->BorderRadius = 10;
+		this->ColorLeaveBord = Color::Tomato;
+		this->ColorLeaveBack = Color::Transparent;
+		this->ColorLeaveText = Color::Tomato;
+
+		this->ColorEnterBord = Color::White;
+		this->ColorEnterBack = Color::Tomato;
+		this->ColorEnterText = Color::White;*/
+
+
 #pragma endregion
 	private:
 		System::Void uiButton_Load(System::Object^ sender, System::EventArgs^ e) {

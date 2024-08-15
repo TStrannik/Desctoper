@@ -22,5 +22,16 @@ void uiButton::uiCostructor() {
 	SF->LineAlignment = StringAlignment::Center;
 
 
+	Text = L"SampleText";
+	BorderRadius = 10;
+	ColorLeaveBord = Color::Tomato;
+	ColorLeaveBack = Color::Transparent;
+	ColorLeaveText = Color::Tomato;
+
+	ColorEnterBord = Color::White;
+	ColorEnterBack = Color::Tomato;
+	ColorEnterText = Color::White;
+
+
 	
 }
