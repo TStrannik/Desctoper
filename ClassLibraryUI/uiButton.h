@@ -39,13 +39,14 @@ namespace ClassLibraryUI {
 		
 	public:
 		//property String Caption;
-		property int    BorderRadius;
-		property Color  ColorLeaveBack;
-		property Color  ColorLeaveBord;
-		property Color  ColorLeaveText;
-		property Color  ColorEnterBack;
-		property Color  ColorEnterBord;
-		property Color  ColorEnterText;
+		property int     BorderRadius;
+		property String^ Caption;
+		property Color   ColorLeaveBack;
+		property Color   ColorLeaveBord;
+		property Color   ColorLeaveText;
+		property Color   ColorEnterBack;
+		property Color   ColorEnterBord;
+		property Color   ColorEnterText;
 		
 
 	private:
@@ -86,7 +87,7 @@ namespace ClassLibraryUI {
 			// uiButton
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;//:Font;
 			this->Name = L"uiButton";
 			this->Size = System::Drawing::Size(100, 30);
 			this->Load += gcnew System::EventHandler(this, &uiButton::uiButton_Load);
@@ -96,22 +97,11 @@ namespace ClassLibraryUI {
 			this->ResumeLayout(false);
 		}
 
-
-		/*this->Text = L"SampleText";
-		this->BorderRadius = 10;
-		this->ColorLeaveBord = Color::Tomato;
-		this->ColorLeaveBack = Color::Transparent;
-		this->ColorLeaveText = Color::Tomato;
-
-		this->ColorEnterBord = Color::White;
-		this->ColorEnterBack = Color::Tomato;
-		this->ColorEnterText = Color::White;*/
-
-
 #pragma endregion
 	private:
 		System::Void uiButton_Load(System::Object^ sender, System::EventArgs^ e) {
 			UICompState = CS_LEAVE;
+			Text = Caption;
 		}
 		System::Void uiButton_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g		  = e->Graphics;
@@ -139,7 +129,7 @@ namespace ClassLibraryUI {
 
 			//// DRY!!!!
 
-			//// Text!!!!
+			//// Text!!!! Caption
 
 
 			switch (UICompState) {

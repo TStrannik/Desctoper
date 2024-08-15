@@ -70,38 +70,7 @@ namespace Desctoper {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::ComponentModel::IContainer^ components;
-
-
-
-
 
 
 	protected:
@@ -122,9 +91,9 @@ namespace Desctoper {
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea6 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series6 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea9 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend9 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series9 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->tmrDisplayRequired = (gcnew System::Windows::Forms::Timer(this->components));
 			this->lblCurrentTime = (gcnew System::Windows::Forms::Label());
 			this->tmrTime = (gcnew System::Windows::Forms::Timer(this->components));
@@ -173,16 +142,16 @@ namespace Desctoper {
 			// 
 			// chart1
 			// 
-			chartArea6->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea6);
-			legend6->Name = L"Legend1";
-			this->chart1->Legends->Add(legend6);
+			chartArea9->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea9);
+			legend9->Name = L"Legend1";
+			this->chart1->Legends->Add(legend9);
 			this->chart1->Location = System::Drawing::Point(19, 12);
 			this->chart1->Name = L"chart1";
-			series6->ChartArea = L"ChartArea1";
-			series6->Legend = L"Legend1";
-			series6->Name = L"Series1";
-			this->chart1->Series->Add(series6);
+			series9->ChartArea = L"ChartArea1";
+			series9->Legend = L"Legend1";
+			series9->Name = L"Series1";
+			this->chart1->Series->Add(series9);
 			this->chart1->Size = System::Drawing::Size(310, 182);
 			this->chart1->TabIndex = 2;
 			this->chart1->Text = L"chart1";
