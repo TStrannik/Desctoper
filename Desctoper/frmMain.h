@@ -65,8 +65,8 @@ namespace Desctoper {
 	private: System::Windows::Forms::Timer^ tmrTime;
 	private: System::Windows::Forms::PictureBox^ pbxFile;
 	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
-	private: ClassLibraryUI::uiButton^ uiButton1;
-	private: ClassLibraryUI::uiButton^ uiButton2;
+
+
 
 
 
@@ -131,8 +131,6 @@ namespace Desctoper {
 			this->pbxClose = (gcnew System::Windows::Forms::PictureBox());
 			this->pbxFile = (gcnew System::Windows::Forms::PictureBox());
 			this->ofdBack = (gcnew System::Windows::Forms::OpenFileDialog());
-			this->uiButton1 = (gcnew ClassLibraryUI::uiButton());
-			this->uiButton2 = (gcnew ClassLibraryUI::uiButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
@@ -260,46 +258,12 @@ namespace Desctoper {
 			// 
 			this->ofdBack->FileName = L"openFileDialog1";
 			// 
-			// uiButton1
-			// 
-			this->uiButton1->BackColor = System::Drawing::Color::Black;
-			this->uiButton1->BorderRadius = 40;
-			this->uiButton1->ColorEnterBack = System::Drawing::Color::Black;
-			this->uiButton1->ColorEnterBord = System::Drawing::Color::White;
-			this->uiButton1->ColorEnterText = System::Drawing::Color::White;
-			this->uiButton1->ColorLeaveBack = System::Drawing::Color::Transparent;
-			this->uiButton1->ColorLeaveBord = System::Drawing::Color::Tomato;
-			this->uiButton1->ColorLeaveText = System::Drawing::Color::Tomato;
-			this->uiButton1->ForeColor = System::Drawing::Color::White;
-			this->uiButton1->Location = System::Drawing::Point(66, 297);
-			this->uiButton1->Name = L"uiButton1";
-			this->uiButton1->Size = System::Drawing::Size(182, 93);
-			this->uiButton1->TabIndex = 10;
-			// 
-			// uiButton2
-			// 
-			this->uiButton2->BackColor = System::Drawing::Color::Black;
-			this->uiButton2->BorderRadius = 0;
-			this->uiButton2->ColorEnterBack = System::Drawing::Color::Black;
-			this->uiButton2->ColorEnterBord = System::Drawing::Color::Black;
-			this->uiButton2->ColorEnterText = System::Drawing::Color::White;
-			this->uiButton2->ColorLeaveBack = System::Drawing::Color::Tomato;
-			this->uiButton2->ColorLeaveBord = System::Drawing::Color::Tomato;
-			this->uiButton2->ColorLeaveText = System::Drawing::Color::White;
-			this->uiButton2->ForeColor = System::Drawing::Color::White;
-			this->uiButton2->Location = System::Drawing::Point(332, 325);
-			this->uiButton2->Name = L"uiButton2";
-			this->uiButton2->Size = System::Drawing::Size(100, 30);
-			this->uiButton2->TabIndex = 11;
-			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::DarkGray;
 			this->ClientSize = System::Drawing::Size(844, 495);
-			this->Controls->Add(this->uiButton2);
-			this->Controls->Add(this->uiButton1);
 			this->Controls->Add(this->pbxFile);
 			this->Controls->Add(this->pbxClose);
 			this->Controls->Add(this->lblCurrentTime);

@@ -139,23 +139,15 @@ namespace ClassLibraryUI {
 			} else {
 				Drawing2D::GraphicsPath^ gp = gcnew Drawing2D::GraphicsPath();
 
-				g->DrawLine(bdPen, r, 0, w - r, 0);
-				g->DrawArc(bdPen, w - r * 2, 0, r * 2, r * 2, 270, 90);
-				g->DrawLine(bdPen, w, r, w, h - r);
-				g->DrawArc(bdPen, w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
-				g->DrawLine(bdPen, w - r, h, r, h);
-				g->DrawArc(bdPen, 0, h - r * 2, r * 2, r * 2, 90, 90);
-				g->DrawLine(bdPen, 0, h - r, 0, r);
-				g->DrawArc(bdPen, 0, 0, r * 2, r * 2, 180, 90);
+				g->DrawLine(bdPen, r, 0, w - r, 0); g->DrawArc(bdPen, w - r * 2, 0, r * 2, r * 2, 270, 90);
+				g->DrawLine(bdPen, w, r, w, h - r); g->DrawArc(bdPen, w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
+				g->DrawLine(bdPen, w - r, h, r, h); g->DrawArc(bdPen, 0, h - r * 2, r * 2, r * 2, 90, 90);
+				g->DrawLine(bdPen, 0, h - r, 0, r); g->DrawArc(bdPen, 0, 0, r * 2, r * 2, 180, 90);
 
-				gp->AddLine(r, 0, w - r, 0);
-				gp->AddArc(w - r * 2, 0, r * 2, r * 2, 270, 90);
-				gp->AddLine(w, r, w, h - r);
-				gp->AddArc(w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
-				gp->AddLine(w - r, h, r, h);
-				gp->AddArc(0, h - r * 2, r * 2, r * 2, 90, 90);
-				gp->AddLine(0, h - r, 0, r);
-				gp->AddArc(0, 0, r * 2, r * 2, 180, 90);
+				gp->AddLine(r, 0, w - r, 0);		gp->AddArc(w - r * 2, 0, r * 2, r * 2, 270, 90);
+				gp->AddLine(w, r, w, h - r);		gp->AddArc(w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
+				gp->AddLine(w - r, h, r, h);		gp->AddArc(0, h - r * 2, r * 2, r * 2, 90, 90);
+				gp->AddLine(0, h - r, 0, r);		gp->AddArc(0, 0, r * 2, r * 2, 180, 90);
 				gp->CloseFigure();
 
 				g->FillPath(bkBrush, gp);
