@@ -3,8 +3,6 @@
 #include <iostream>
 
 
-
-
 //#include "powrprof.h"
 //using namespace System::Runtime::InteropServices;
 

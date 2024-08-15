@@ -2,8 +2,6 @@
 #include <Windows.h>
 #include <string>
 
-//#include "ytButton.h"
-
 const int DT_POS_LEFT   = 0x00;
 const int DT_POS_RIGHT  = 0x01;
 const int DT_POS_MIDDLE = 0x02;
@@ -25,7 +23,7 @@ namespace Desctoper {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Сводка для frmMain
+	/// РЎРІРѕРґРєР° РґР»СЏ frmMain
 	/// </summary>
 	public ref class frmMain : public System::Windows::Forms::Form
 	{
@@ -34,13 +32,13 @@ namespace Desctoper {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~frmMain()
 		{
@@ -107,14 +105,14 @@ namespace Desctoper {
 
 	private:
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -372,7 +370,7 @@ namespace Desctoper {
 			Brush^ br = gcnew SolidBrush(clr->Black);
 			System::Drawing::Font^ fnt = gcnew System::Drawing::Font("Arial", 20, FontStyle::Bold);
 
-			g->DrawString("Desctoper ver 0.1.0", fnt, br, 0, 0);
+			g->DrawString("Desctoper ver 0.2.0", fnt, br, 0, 0);
 		
 		}
 		////////////// HOTKEYS
