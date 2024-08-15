@@ -138,7 +138,7 @@ namespace ClassLibraryUI {
 				g->FillRectangle(bkBrush, 0, 0, w, h);
 			} else {
 				Drawing2D::GraphicsPath^ gp = gcnew Drawing2D::GraphicsPath();
-				// next 3
+
 				g->DrawLine(bdPen, r, 0, w - r, 0); g->DrawArc(bdPen, w - r * 2, 0, r * 2, r * 2, 270, 90);
 				g->DrawLine(bdPen, w, r, w, h - r); g->DrawArc(bdPen, w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
 				g->DrawLine(bdPen, w - r, h, r, h); g->DrawArc(bdPen, 0, h - r * 2, r * 2, r * 2, 90, 90);
