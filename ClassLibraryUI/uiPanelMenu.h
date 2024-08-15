@@ -107,10 +107,20 @@ namespace ClassLibraryUI {
 			g->FillRectangle(lbkBrush, 0, 0, w, h);
 	
 
+
+			//Width  = (MenuOpen ? WidthFinal  : WidthStart );
+			//Height = (MenuOpen ? HeightFinal : HeightStart);
+
 			if (MenuOpen) {
-				if (Width < WidthFinal) Width += 10;
-				if (Height < HeightFinal) Height += 10;
+				if (Width <= WidthFinal) Width += WidthFinal / 16;
+				if (Height <= HeightFinal) Height += HeightFinal / 16;
 			}
+			else {
+				if (Width >= WidthStart) Width -= WidthFinal / 16;
+				if (Height >= HeightStart) Height -= HeightFinal / 16;
+			}
+
+			Thread::Sleep(5);
 
 			//g->DrawString(Text, Font, ltxBrush, (int)(w / 2), (int)(h / 2));
 			

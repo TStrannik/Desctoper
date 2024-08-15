@@ -435,7 +435,8 @@ namespace Desctoper {
 			//
 			//uiPanelMenu1->Text = L"We are the Robots";
 
-			uiPanelMenu1->MenuOpen = true; uiPanelMenu1->Refresh(); // Invalidate();
+			uiPanelMenu1->MenuOpen = !uiPanelMenu1->MenuOpen;
+			uiPanelMenu1->Refresh(); // Invalidate();
 		}
 		System::Void pbxSetting_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;
