@@ -85,26 +85,10 @@ namespace ClassLibraryUI {
 			// 
 			// uiButton
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->Name = L"uiButton";
-
-			this->BorderRadius   = 5;
-			this->Text = L"SampleText";
-			/*this->Caption = L"SampleText";*/
-			this->ColorEnterBord = Color::Black;
-			this->ColorEnterBack = Color::Black;
-			this->ColorEnterText = Color::White;
-			this->ColorLeaveBord = Color::Tomato;
-			this->ColorLeaveBack = Color::Tomato;
-			this->ColorLeaveText = Color::White;
-
-			this->Size = System::Drawing::Size(100, 30);
-			this->Load += gcnew System::EventHandler(this, &uiButton::uiButton_Load);
-			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &uiButton::uiButton_Paint);
-			this->MouseEnter += gcnew System::EventHandler(this, &uiButton::uiButton_MouseEnter);
-			this->MouseLeave += gcnew System::EventHandler(this, &uiButton::uiButton_MouseLeave);
+			this->Load += gcnew System::EventHandler(this, &uiButton::uiButton_Load_1);
 			this->ResumeLayout(false);
+
 		}
 #pragma endregion
 	private:
@@ -136,6 +120,8 @@ namespace ClassLibraryUI {
 
 
 			//// DRY!!!!
+
+			//// Text!!!!
 
 
 			switch (UICompState) {
@@ -179,7 +165,9 @@ namespace ClassLibraryUI {
 		}
 		System::Void uiButton_MouseEnter(System::Object^ sender, System::EventArgs^ e) { UICompState = CS_ENTER; Invalidate(); }
 		System::Void uiButton_MouseLeave(System::Object^ sender, System::EventArgs^ e) { UICompState = CS_LEAVE; Invalidate(); }
-	};
+	private: System::Void uiButton_Load_1(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
 
 
