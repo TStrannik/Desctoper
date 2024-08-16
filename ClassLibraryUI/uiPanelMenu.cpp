@@ -63,9 +63,13 @@ void uiPanelMenu::uiCostructor() {
 //}
 
 
-
-bool uiPanelMenu::HideMenu() { MenuOpen = false;	 Invalidate(); return true; }
-bool uiPanelMenu::OpenMenu() { MenuOpen = true;		 Invalidate(); return true; }
+bool uiPanelMenu::OpenMenu() { MenuOpen = true;			 Invalidate(); return true; }
+bool uiPanelMenu::HideMenu() {
+	MenuOpen = false;
+	!mrazota ?  Hide() : Show();
+	Invalidate();
+	return true;
+}
 bool uiPanelMenu::Toggle() {
 	MenuOpen = !MenuOpen;
 	Show();

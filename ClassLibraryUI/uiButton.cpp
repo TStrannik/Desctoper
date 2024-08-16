@@ -15,7 +15,7 @@ void uiButton::uiCostructor() {
 	);
 	DoubleBuffered = true;
 
-	BackColor = Color::Black;
+	BackColor = Color::Transparent;
 	ForeColor = Color::White;
 
 	SF->Alignment	  = StringAlignment::Center;
@@ -34,4 +34,9 @@ void uiButton::uiCostructor() {
 	ColorEnterBack = Color::Tomato;
 	ColorEnterText = Color::White;
 	
+
+
+	FlatStyle = Windows::Forms::FlatStyle::Flat;
+
+
 }

@@ -75,6 +75,18 @@ namespace Desctoper {
 	private: ClassLibraryUI::uiButton^ uiBtnApply;
 	private: ClassLibraryUI::uiPanelMenu^ uiPanelMenu1;
 	private: ClassLibraryUI::uiButton^ uiButton1;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ button3;
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -171,7 +183,9 @@ namespace Desctoper {
 			this->pbxSetting = (gcnew System::Windows::Forms::PictureBox());
 			this->uiBtnApply = (gcnew ClassLibraryUI::uiButton());
 			this->uiPanelMenu1 = (gcnew ClassLibraryUI::uiPanelMenu());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->uiButton1 = (gcnew ClassLibraryUI::uiButton());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxSetting))->BeginInit();
@@ -298,7 +312,8 @@ namespace Desctoper {
 			// uiBtnApply
 			// 
 			this->uiBtnApply->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->uiBtnApply->BackColor = System::Drawing::Color::Black;
+			this->uiBtnApply->BackColor = System::Drawing::Color::Transparent;
+			this->uiBtnApply->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->uiBtnApply->BorderRadius = 10;
 			this->uiBtnApply->Caption = L"SampleText";
 			this->uiBtnApply->ColorEnterBack = System::Drawing::Color::Black;
@@ -307,6 +322,7 @@ namespace Desctoper {
 			this->uiBtnApply->ColorLeaveBack = System::Drawing::Color::Transparent;
 			this->uiBtnApply->ColorLeaveBord = System::Drawing::Color::Black;
 			this->uiBtnApply->ColorLeaveText = System::Drawing::Color::Black;
+			this->uiBtnApply->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->uiBtnApply->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Bold));
 			this->uiBtnApply->ForeColor = System::Drawing::Color::White;
 			this->uiBtnApply->Location = System::Drawing::Point(1030, 528);
@@ -319,11 +335,12 @@ namespace Desctoper {
 			// uiPanelMenu1
 			// 
 			this->uiPanelMenu1->BackColor = System::Drawing::Color::White;
-			this->uiPanelMenu1->BorderRadius = 10;
+			this->uiPanelMenu1->BorderRadius = 25;
 			this->uiPanelMenu1->Caption = L"Settings";
 			this->uiPanelMenu1->ColorLeaveBack = System::Drawing::Color::White;
 			this->uiPanelMenu1->ColorLeaveBord = System::Drawing::Color::Black;
 			this->uiPanelMenu1->ColorLeaveText = System::Drawing::Color::Black;
+			this->uiPanelMenu1->Controls->Add(this->button2);
 			this->uiPanelMenu1->Controls->Add(this->uiButton1);
 			this->uiPanelMenu1->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Bold));
 			this->uiPanelMenu1->ForeColor = System::Drawing::Color::Black;
@@ -331,13 +348,31 @@ namespace Desctoper {
 			this->uiPanelMenu1->HeightStart = 300;
 			this->uiPanelMenu1->Location = System::Drawing::Point(0, 56);
 			this->uiPanelMenu1->MenuOpen = true;
-			this->uiPanelMenu1->mrazota = false;
+			this->uiPanelMenu1->mrazota = true;
 			this->uiPanelMenu1->Name = L"uiPanelMenu1";
 			this->uiPanelMenu1->Size = System::Drawing::Size(400, 300);
 			this->uiPanelMenu1->TabIndex = 11;
 			this->uiPanelMenu1->Text = L"Settings";
 			this->uiPanelMenu1->WidthFinal = 400;
 			this->uiPanelMenu1->WidthStart = 20;
+			// 
+			// button2
+			// 
+			this->button2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->button2->FlatAppearance->BorderColor = System::Drawing::Color::Black;
+			this->button2->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Blue;
+			this->button2->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Black;
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button2->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button2->ForeColor = System::Drawing::Color::Black;
+			this->button2->Location = System::Drawing::Point(177, 255);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(100, 30);
+			this->button2->TabIndex = 12;
+			this->button2->Text = L"Apply";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->MouseEnter += gcnew System::EventHandler(this, &frmMain::button2_MouseEnter);
 			// 
 			// uiButton1
 			// 
@@ -351,6 +386,7 @@ namespace Desctoper {
 			this->uiButton1->ColorLeaveBack = System::Drawing::Color::Transparent;
 			this->uiButton1->ColorLeaveBord = System::Drawing::Color::Black;
 			this->uiButton1->ColorLeaveText = System::Drawing::Color::Black;
+			this->uiButton1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->uiButton1->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Bold));
 			this->uiButton1->ForeColor = System::Drawing::Color::White;
 			this->uiButton1->Location = System::Drawing::Point(283, 255);
@@ -361,12 +397,32 @@ namespace Desctoper {
 			this->uiButton1->UseVisualStyleBackColor = false;
 			this->uiButton1->Click += gcnew System::EventHandler(this, &frmMain::uiButton1_Click);
 			// 
+			// button3
+			// 
+			this->button3->BackColor = System::Drawing::Color::Transparent;
+			this->button3->FlatAppearance->BorderColor = System::Drawing::Color::Black;
+			this->button3->FlatAppearance->BorderSize = 0;
+			this->button3->FlatAppearance->MouseDownBackColor = System::Drawing::Color::Blue;
+			this->button3->FlatAppearance->MouseOverBackColor = System::Drawing::Color::Black;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button3->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button3->ForeColor = System::Drawing::Color::Black;
+			this->button3->Location = System::Drawing::Point(798, 528);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(100, 30);
+			this->button3->TabIndex = 13;
+			this->button3->Text = L"Apply";
+			this->button3->UseVisualStyleBackColor = false;
+			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::RosyBrown;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(1142, 570);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->uiBtnApply);
 			this->Controls->Add(this->pbxSetting);
 			this->Controls->Add(this->pbxFile);
@@ -432,6 +488,9 @@ namespace Desctoper {
 			// 
 			// uiPanelMenu1->HideMenu();
 			
+
+			uiPanelMenu1->HideMenu();
+
 		}
 		System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->WindowState = FormWindowState::Minimized;
@@ -726,6 +785,9 @@ namespace Desctoper {
 
 private: System::Void uiButton1_Click(System::Object^ sender, System::EventArgs^ e) {
 	pbxSetting->Invalidate();
+}
+private: System::Void button2_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+	button2->ForeColor = Color::White;
 }
 };
 
