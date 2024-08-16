@@ -156,6 +156,9 @@ namespace ClassLibraryUI {
 	
 
 			
+
+
+
 			if (mrazota) {
 
 				// TODO:	calculate step of incr/decr

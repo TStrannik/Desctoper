@@ -74,6 +74,8 @@ namespace Desctoper {
 
 	private: ClassLibraryUI::uiButton^ uiBtnApply;
 	private: ClassLibraryUI::uiPanelMenu^ uiPanelMenu1;
+	private: ClassLibraryUI::uiButton^ uiButton1;
+
 
 
 
@@ -169,9 +171,11 @@ namespace Desctoper {
 			this->pbxSetting = (gcnew System::Windows::Forms::PictureBox());
 			this->uiBtnApply = (gcnew ClassLibraryUI::uiButton());
 			this->uiPanelMenu1 = (gcnew ClassLibraryUI::uiPanelMenu());
+			this->uiButton1 = (gcnew ClassLibraryUI::uiButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxSetting))->BeginInit();
+			this->uiPanelMenu1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// tmrDisplayRequired
@@ -316,23 +320,45 @@ namespace Desctoper {
 			// 
 			this->uiPanelMenu1->BackColor = System::Drawing::Color::White;
 			this->uiPanelMenu1->BorderRadius = 10;
-			this->uiPanelMenu1->Caption = L"Header";
+			this->uiPanelMenu1->Caption = L"Settings";
 			this->uiPanelMenu1->ColorLeaveBack = System::Drawing::Color::White;
 			this->uiPanelMenu1->ColorLeaveBord = System::Drawing::Color::Black;
 			this->uiPanelMenu1->ColorLeaveText = System::Drawing::Color::Black;
+			this->uiPanelMenu1->Controls->Add(this->uiButton1);
 			this->uiPanelMenu1->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Bold));
 			this->uiPanelMenu1->ForeColor = System::Drawing::Color::Black;
 			this->uiPanelMenu1->HeightFinal = 300;
 			this->uiPanelMenu1->HeightStart = 300;
 			this->uiPanelMenu1->Location = System::Drawing::Point(0, 56);
 			this->uiPanelMenu1->MenuOpen = true;
-			this->uiPanelMenu1->mrazota = true;
+			this->uiPanelMenu1->mrazota = false;
 			this->uiPanelMenu1->Name = L"uiPanelMenu1";
 			this->uiPanelMenu1->Size = System::Drawing::Size(400, 300);
 			this->uiPanelMenu1->TabIndex = 11;
-			this->uiPanelMenu1->Text = L"Header";
+			this->uiPanelMenu1->Text = L"Settings";
 			this->uiPanelMenu1->WidthFinal = 400;
 			this->uiPanelMenu1->WidthStart = 20;
+			// 
+			// uiButton1
+			// 
+			this->uiButton1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->uiButton1->BackColor = System::Drawing::Color::Black;
+			this->uiButton1->BorderRadius = 10;
+			this->uiButton1->Caption = L"SampleText";
+			this->uiButton1->ColorEnterBack = System::Drawing::Color::Black;
+			this->uiButton1->ColorEnterBord = System::Drawing::Color::White;
+			this->uiButton1->ColorEnterText = System::Drawing::Color::White;
+			this->uiButton1->ColorLeaveBack = System::Drawing::Color::Transparent;
+			this->uiButton1->ColorLeaveBord = System::Drawing::Color::Black;
+			this->uiButton1->ColorLeaveText = System::Drawing::Color::Black;
+			this->uiButton1->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Bold));
+			this->uiButton1->ForeColor = System::Drawing::Color::White;
+			this->uiButton1->Location = System::Drawing::Point(283, 255);
+			this->uiButton1->Name = L"uiButton1";
+			this->uiButton1->Size = System::Drawing::Size(100, 30);
+			this->uiButton1->TabIndex = 1;
+			this->uiButton1->Text = L"Apply";
+			this->uiButton1->UseVisualStyleBackColor = false;
 			// 
 			// frmMain
 			// 
@@ -364,6 +390,7 @@ namespace Desctoper {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxSetting))->EndInit();
+			this->uiPanelMenu1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
