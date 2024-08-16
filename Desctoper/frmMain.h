@@ -71,7 +71,10 @@ namespace Desctoper {
 	private: System::Windows::Forms::PictureBox^ pbxFile;
 	private: System::Windows::Forms::OpenFileDialog^ ofdBack;
 	private: System::Windows::Forms::PictureBox^ pbxSetting;
-	private: ClassLibraryUI::uiPanelMenu^ uiPanelMenu1;
+
+	private: ClassLibraryUI::uiButton^ uiBtnApply;
+
+
 
 
 
@@ -128,7 +131,7 @@ namespace Desctoper {
 			this->pbxFile = (gcnew System::Windows::Forms::PictureBox());
 			this->ofdBack = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->pbxSetting = (gcnew System::Windows::Forms::PictureBox());
-			this->uiPanelMenu1 = (gcnew ClassLibraryUI::uiPanelMenu());
+			this->uiBtnApply = (gcnew ClassLibraryUI::uiButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxClose))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxFile))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pbxSetting))->BeginInit();
@@ -241,7 +244,7 @@ namespace Desctoper {
 			// pbxSetting
 			// 
 			this->pbxSetting->BackColor = System::Drawing::Color::Transparent;
-			this->pbxSetting->Location = System::Drawing::Point(3, 0);
+			this->pbxSetting->Location = System::Drawing::Point(0, 0);
 			this->pbxSetting->Name = L"pbxSetting";
 			this->pbxSetting->Size = System::Drawing::Size(50, 50);
 			this->pbxSetting->TabIndex = 10;
@@ -251,35 +254,33 @@ namespace Desctoper {
 			this->pbxSetting->MouseEnter += gcnew System::EventHandler(this, &frmMain::pbxSetting_MouseEnter);
 			this->pbxSetting->MouseLeave += gcnew System::EventHandler(this, &frmMain::pbxSetting_MouseLeave);
 			// 
-			// uiPanelMenu1
+			// uiBtnApply
 			// 
-			this->uiPanelMenu1->BackColor = System::Drawing::Color::White;
-			this->uiPanelMenu1->BorderRadius = 10;
-			this->uiPanelMenu1->Caption = L"Header";
-			this->uiPanelMenu1->ColorLeaveBack = System::Drawing::Color::White;
-			this->uiPanelMenu1->ColorLeaveBord = System::Drawing::Color::Black;
-			this->uiPanelMenu1->ColorLeaveText = System::Drawing::Color::Black;
-			this->uiPanelMenu1->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Bold));
-			this->uiPanelMenu1->ForeColor = System::Drawing::Color::Black;
-			this->uiPanelMenu1->HeightFinal = 300;
-			this->uiPanelMenu1->HeightStart = 300;
-			this->uiPanelMenu1->Location = System::Drawing::Point(3, 56);
-			this->uiPanelMenu1->MenuOpen = true;
-			this->uiPanelMenu1->Name = L"uiPanelMenu1";
-			this->uiPanelMenu1->Size = System::Drawing::Size(400, 300);
-			this->uiPanelMenu1->TabIndex = 11;
-			this->uiPanelMenu1->Text = L"Header";
-			this->uiPanelMenu1->WidthFinal = 400;
-			this->uiPanelMenu1->WidthStart = 20;
+			this->uiBtnApply->BackColor = System::Drawing::Color::Black;
+			this->uiBtnApply->BorderRadius = 10;
+			this->uiBtnApply->Caption = L"SampleText";
+			this->uiBtnApply->ColorEnterBack = System::Drawing::Color::Black;
+			this->uiBtnApply->ColorEnterBord = System::Drawing::Color::White;
+			this->uiBtnApply->ColorEnterText = System::Drawing::Color::White;
+			this->uiBtnApply->ColorLeaveBack = System::Drawing::Color::Transparent;
+			this->uiBtnApply->ColorLeaveBord = System::Drawing::Color::Black;
+			this->uiBtnApply->ColorLeaveText = System::Drawing::Color::Black;
+			this->uiBtnApply->Font = (gcnew System::Drawing::Font(L"Arial", 10, System::Drawing::FontStyle::Bold));
+			this->uiBtnApply->ForeColor = System::Drawing::Color::White;
+			this->uiBtnApply->Location = System::Drawing::Point(226, 443);
+			this->uiBtnApply->Name = L"uiBtnApply";
+			this->uiBtnApply->Size = System::Drawing::Size(100, 30);
+			this->uiBtnApply->TabIndex = 0;
+			this->uiBtnApply->Text = L"Apply";
+			this->uiBtnApply->UseVisualStyleBackColor = false;
 			// 
 			// frmMain
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::RosyBrown;
-			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(844, 495);
-			this->Controls->Add(this->uiPanelMenu1);
+			this->Controls->Add(this->uiBtnApply);
 			this->Controls->Add(this->pbxSetting);
 			this->Controls->Add(this->pbxFile);
 			this->Controls->Add(this->pbxClose);
@@ -340,7 +341,7 @@ namespace Desctoper {
 			// CYRILLIC!!!!
 			//uiPanelMenu1->Text = u8"Settings";
 			// 
-			uiPanelMenu1->HideMenu();
+			//uiPanelMenu1->HideMenu();
 			
 		}
 		System::Void frmMain_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -368,6 +369,7 @@ namespace Desctoper {
 		#pragma endregion
 
 		
+
 		#pragma region CLOSE/FILE
 		///////////////////////////////////
 		////////////// CLOSE/FILE
@@ -452,7 +454,7 @@ namespace Desctoper {
 		///////////////////////////////////
 		////////////// CLOSE/FILE
 		System::Void pbxSetting_Click(System::Object^ sender, System::EventArgs^ e) {
-			uiPanelMenu1->Toggle();
+			//uiPanelMenu1->Toggle();
 
 			
 
@@ -489,6 +491,7 @@ namespace Desctoper {
 		#pragma endregion
 
 
+
 		#pragma region TIMERS
 		///////////////////////////////////
 		////////////// TIMERS
@@ -508,6 +511,7 @@ namespace Desctoper {
 		////////////// TIMERS
 		///////////////////////////////////
 		#pragma	endregion
+
 
 
 		#pragma region LBL_TIME
@@ -576,7 +580,7 @@ namespace Desctoper {
 
 
 
-
+		#pragma region ETC
 		System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 			this->WindowState = (this->WindowState == FormWindowState::Normal ? FormWindowState::Maximized : FormWindowState::Normal);
 		}
@@ -589,12 +593,9 @@ namespace Desctoper {
 		private: System::Void uiButton2_Click(System::Object^ sender, System::EventArgs^ e) {
 			MessageBox::Show(L"GAVJA");
 		}
-
+		#pragma endregion ETC
 
 	#pragma	endregion
-
-
-
 
 
 	public:
@@ -629,6 +630,7 @@ namespace Desctoper {
 		////////////// USER FUNCTIONS
 		///////////////////////////////////
 		#pragma	endregion
+
 
 };
 

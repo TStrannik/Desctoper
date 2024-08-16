@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+
+enum AnimType : int { Simple = 0, Expansion = 1 };
+
+
 using namespace System;
 using namespace System::ComponentModel;
 using namespace System::Collections;
@@ -29,6 +33,9 @@ namespace ClassLibraryUI {
 		bool HideMenu();
 
 	public:
+		property int	 AnimType;
+
+
 		property int     BorderRadius;
 		property String^ Caption;
 
