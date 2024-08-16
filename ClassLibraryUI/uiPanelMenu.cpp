@@ -40,31 +40,29 @@ void uiPanelMenu::uiCostructor() {
 	/*Text = (Name);
 	Caption = Text;*/
 
-	Width = 400;
-	Height = 300;
+	Width = 400; Height = 300;
 
-	MenuOpen     = true;
-	WidthStart   = 20;
-	HeightStart  = 300;
-	WidthFinal	 = 400;
-	HeightFinal  = 300;
-
-}
+	WidthStart   = 20;  HeightStart  = 300;
+	WidthFinal	 = 400; HeightFinal  = 300;
 
 
-bool uiPanelMenu::Toggle() {
-	MenuOpen = !MenuOpen;
-	Refresh();
 	Visible = true;
+	MenuOpen = true;
+	stateAnim = MenuOpen ? stStart : stFinal;
 
-	return MenuOpen;
+
+	//AnimType = Expansion;
+	mrazota = false;
+
 }
 
-bool uiPanelMenu::HideMenu() {
-	//Width = 20;
+//bool uiPanelMenu::Toggle()   { 
+//	MenuOpen = !MenuOpen; 
+//	Invalidate(); 
+//	return MenuOpen;
+//}
 
-	MenuOpen = false;
-	Refresh();
 
-	return true;
-}
+
+bool uiPanelMenu::HideMenu() { MenuOpen = false;	 Invalidate(); return true; }
+bool uiPanelMenu::OpenMenu() { MenuOpen = true;		 Invalidate(); return true; }
