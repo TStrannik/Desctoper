@@ -359,6 +359,7 @@ namespace Desctoper {
 			this->uiButton1->TabIndex = 1;
 			this->uiButton1->Text = L"Apply";
 			this->uiButton1->UseVisualStyleBackColor = false;
+			this->uiButton1->Click += gcnew System::EventHandler(this, &frmMain::uiButton1_Click);
 			// 
 			// frmMain
 			// 
@@ -366,7 +367,6 @@ namespace Desctoper {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::RosyBrown;
 			this->ClientSize = System::Drawing::Size(1142, 570);
-			this->Controls->Add(this->uiPanelMenu1);
 			this->Controls->Add(this->uiBtnApply);
 			this->Controls->Add(this->pbxSetting);
 			this->Controls->Add(this->pbxFile);
@@ -376,6 +376,7 @@ namespace Desctoper {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
+			this->Controls->Add(this->uiPanelMenu1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"frmMain";
@@ -544,15 +545,19 @@ namespace Desctoper {
 		System::Void pbxSetting_Click(System::Object^ sender, System::EventArgs^ e) {
 			uiPanelMenu1->Toggle();
 
-
+			//pbxSetting->Invalidate();
 		}
 		System::Void pbxSetting_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 			Graphics^ g = e->Graphics;
+
+			//g->Clear(Color::Transparent);
+
+			g->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::HighQuality;
+
 			Color^ clr = gcnew Color();
 			Brush^ br = gcnew SolidBrush(clr->Black);
 			Pen^ pen3bk = gcnew Pen(clr->Black, 3.0f);
 			Pen^ pen1wt = gcnew Pen(clr->White, 1.0f);
-
 
 			switch (UICompState) {
 			case CS_LEAVE:
@@ -719,6 +724,9 @@ namespace Desctoper {
 		#pragma	endregion
 
 
+private: System::Void uiButton1_Click(System::Object^ sender, System::EventArgs^ e) {
+	pbxSetting->Invalidate();
+}
 };
 
 }

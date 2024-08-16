@@ -151,12 +151,26 @@ namespace ClassLibraryUI {
 			g->SmoothingMode = System::Drawing::Drawing2D::SmoothingMode::HighQuality;	// :AntiAlias;
 			g->Clear(Parent->BackColor);
 
-			g->DrawRectangle(lbdPen, 0, 0, w, h);
-			g->FillRectangle(lbkBrush, 0, 0, w, h);
-	
+			if (r == 0) {
+				g->DrawRectangle(lbdPen, 0, 0, w, h);
+				g->FillRectangle(lbkBrush, 0, 0, w, h);
+			}
+			else {
+				Drawing2D::GraphicsPath^ gp = gcnew Drawing2D::GraphicsPath();
 
-			
+				g->DrawLine(lbdPen, 0, 0, w - r, 0); g->DrawArc(lbdPen, w - r * 2, 0, r * 2, r * 2, 270, 90);
+				g->DrawLine(lbdPen, w, r, w, h - r); g->DrawArc(lbdPen, w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
+				g->DrawLine(lbdPen, w - r, h, 0, h); 
+				g->DrawLine(lbdPen, 0, h - r, 0, 0); 
 
+				gp->AddLine(0, 0, w - r, 0);		gp->AddArc(w - r * 2, 0, r * 2, r * 2, 270, 90);
+				gp->AddLine(w, r, w, h - r);		gp->AddArc(w - r * 2, h - r * 2, r * 2, r * 2, 360, 90);
+				gp->AddLine(w - r, h, 0, h);		
+				gp->AddLine(0, h - r, 0, 0);		
+				gp->CloseFigure();
+
+				g->FillPath(lbkBrush, gp);
+			}
 
 
 			if (mrazota) {
