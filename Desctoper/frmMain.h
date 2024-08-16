@@ -132,6 +132,8 @@ namespace Desctoper {
 
 
 
+
+
   private: System::ComponentModel::IContainer^ components;
 
 
@@ -324,7 +326,7 @@ namespace Desctoper {
 			this->uiPanelMenu1->HeightStart = 300;
 			this->uiPanelMenu1->Location = System::Drawing::Point(0, 56);
 			this->uiPanelMenu1->MenuOpen = true;
-			this->uiPanelMenu1->mrazota = false;
+			this->uiPanelMenu1->mrazota = true;
 			this->uiPanelMenu1->Name = L"uiPanelMenu1";
 			this->uiPanelMenu1->Size = System::Drawing::Size(400, 300);
 			this->uiPanelMenu1->TabIndex = 11;

@@ -4,9 +4,9 @@
 #include <iostream>
 
 
-const int stFinal = 0x00;
-const int stStart = 0x01;
-const int stInter = 0x02;
+const int stFinal = 0;
+const int stStart = 1;
+const int stInter = 2;
 
 //typedef enum : char { Simple, Expansion } typeAnim;
 //typedef enum typeAnim : int { Simple = 0, Expansion = 1 };
@@ -60,12 +60,13 @@ namespace ClassLibraryUI {
 		property Color   ColorLeaveText;
 
 		
+		int stateAnim;
 
 	private:
 		Thread^ AnimThread;
 		StringFormat^ SF = gcnew StringFormat;
 
-		int stateAnim;
+		
 		bool rev;
 
 
@@ -132,17 +133,11 @@ namespace ClassLibraryUI {
 #pragma endregion
 
 #pragma region VOIDS
-	private: 
-		/*System::Void uiPanelMenu_Load(System::Object^ sender, System::EventArgs^ e) {
-			Text = Caption;
-		}*/
-
+	private:
 		System::Void uiPanelMenu_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-			
-			std::cout << "\tPaint\n";
-			
-			Text = Caption;
+			//std::cout << "\tPanelMenu_Paint\n";
 
+			Text = Caption;
 
 			int w = Width - 1, h = Height - 1;
 			int r = BorderRadius;
@@ -160,19 +155,27 @@ namespace ClassLibraryUI {
 			g->FillRectangle(lbkBrush, 0, 0, w, h);
 	
 
+			
+			if (mrazota) {
+
+				// TODO:	calculate step of incr/decr
+				if (!MenuOpen) { Width > WidthStart ? Width -= 20 : Hide(); }
+				else		   { Width < WidthFinal ? Width += 20 : false;  }
+				//Thread::Sleep(2);
+			}
+
+
+			// TODO: on the end of painting
 			g->DrawString(Text, Font, ltxBrush, (int)(w / 2), 5 + Font->Size, SF);
-
-
-			//	if		(Width == WidthFinal) stateAnim = stFinal;
-			//	else if (Width == WidthStart) stateAnim = stStart;
-			//	else						  stateAnim = stInter;
-			//		if (Width <= WidthFinal) Width += 40;
-			//		if (Width >= WidthStart) Width -= 40;
-			//Thread::Sleep(5);
-
-			//	g->DrawString(Text, Font, ltxBrush, (int)(w / 2), 5 + Font->Size, SF);
 			
 			
+
+
+
+
+			/*if		(Width == WidthStart) stateAnim = stStart;
+			else if (Width == WidthFinal) stateAnim = stFinal;
+			else						  stateAnim = stInter;*/
 		}
 
 		System::Void uiPanelMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) {  }
@@ -186,16 +189,6 @@ namespace ClassLibraryUI {
 
 	
 	};
-
-	bool uiPanelMenu::Toggle() {
-		MenuOpen = !MenuOpen;
-
-		if (!mrazota) MenuOpen ? Show() : Hide();
-
-
-		Invalidate();
-		return MenuOpen;
-	}
 
 
 }
