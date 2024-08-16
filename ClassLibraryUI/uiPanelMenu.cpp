@@ -5,7 +5,7 @@ using namespace ClassLibraryUI;
 
 
 void uiPanelMenu::uiCostructor() {
-	System::Drawing::Size^ Size = System::Drawing::Size(40, 300); //C# Size = new Size(100, 30);
+	System::Drawing::Size^ Size = System::Drawing::Size(400, 300); //C# Size = new Size(100, 30);
 
 	SetStyle(
 		ControlStyles::AllPaintingInWmPaint |
@@ -22,9 +22,6 @@ void uiPanelMenu::uiCostructor() {
 
 	Font = (gcnew System::Drawing::Font("Arial", 10, FontStyle::Bold));
 
-	BackColor = Color::Blue;
-	ForeColor = Color::White;
-
 	BorderRadius = 10;
 	ColorLeaveBord = Color::Black;
 	ColorLeaveBack = Color::White;
@@ -34,10 +31,16 @@ void uiPanelMenu::uiCostructor() {
 	ColorEnterBack = Color::Tomato;
 	ColorEnterText = Color::White;*/
 
-	Text = L"Caption";
-	Caption = L"Caption";
+	BackColor = ColorLeaveBack;
+	ForeColor = ColorLeaveText;
 
-	Width = 20;
+	Text = L"Header";
+	Caption = L"Header";
+
+	/*Text = (Name);
+	Caption = Text;*/
+
+	Width = 400;
 	Height = 300;
 
 	MenuOpen     = true;
@@ -45,6 +48,7 @@ void uiPanelMenu::uiCostructor() {
 	HeightStart  = 300;
 	WidthFinal	 = 400;
 	HeightFinal  = 300;
+
 }
 
 
@@ -58,6 +62,7 @@ bool uiPanelMenu::Toggle() {
 
 bool uiPanelMenu::HideMenu() {
 	//Width = 20;
+
 	MenuOpen = false;
 	Refresh();
 

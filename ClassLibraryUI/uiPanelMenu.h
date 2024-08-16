@@ -15,7 +15,8 @@ using namespace System::Threading;
 namespace ClassLibraryUI {
 
 	
-	public ref class uiPanelMenu : public System::Windows::Forms::UserControl
+	//public ref class uiPanelMenu : public System::Windows::Forms::UserControl
+	public ref class uiPanelMenu : public System::Windows::Forms::Panel
 	{
 	public:
 		uiPanelMenu(void)
@@ -28,14 +29,15 @@ namespace ClassLibraryUI {
 		bool HideMenu();
 
 	public:
+		property int     BorderRadius;
+		property String^ Caption;
+
 		property bool	 MenuOpen;
 		property int     WidthStart;
 		property int     HeightStart;
 		property int     WidthFinal;
 		property int     HeightFinal;
 
-		property int     BorderRadius;
-		property String^ Caption;
 		property Color   ColorLeaveBack;
 		property Color   ColorLeaveBord;
 		property Color   ColorLeaveText;
@@ -44,6 +46,9 @@ namespace ClassLibraryUI {
 
 	private:
 		Thread^ AnimThread;
+	private: System::Windows::Forms::Panel^ panel1;
+
+
 		StringFormat^ SF = gcnew StringFormat;
 
 
@@ -74,14 +79,19 @@ namespace ClassLibraryUI {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->SuspendLayout();
+			// 
+			// panel1
+			// 
+			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(400, 100);
+			this->panel1->TabIndex = 0;
 			// 
 			// uiPanelMenu
 			// 
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
-			this->Name = L"uiPanelMenu";
-			this->Size = System::Drawing::Size(20, 300);
-			this->Load += gcnew System::EventHandler(this, &uiPanelMenu::uiPanelMenu_Load);
+			this->Size = System::Drawing::Size(400, 300);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &uiPanelMenu::uiPanelMenu_Paint);
 			this->MouseEnter += gcnew System::EventHandler(this, &uiPanelMenu::uiPanelMenu_MouseEnter);
 			this->ResumeLayout(false);
@@ -91,10 +101,15 @@ namespace ClassLibraryUI {
 
 #pragma region VOIDS
 	private: 
-		System::Void uiPanelMenu_Load(System::Object^ sender, System::EventArgs^ e) {
+		/*System::Void uiPanelMenu_Load(System::Object^ sender, System::EventArgs^ e) {
 			Text = Caption;
-		}
+		}*/
+
 		System::Void uiPanelMenu_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+			Text = Caption;
+
+
+
 			Graphics^ g = e->Graphics;
 
 			int w = Width - 1, h = Height - 1;
@@ -112,25 +127,23 @@ namespace ClassLibraryUI {
 			//Width  = (MenuOpen ? WidthFinal  : WidthStart );
 			//Height = (MenuOpen ? HeightFinal : HeightStart);
 
-			if (MenuOpen) {
-				if (Width <= WidthFinal) Width += 20;
-				
-			} else {
-				if (Width >= WidthStart) Width -= 20;
-				
-			}
-			Thread::Sleep(1);
+			/*if (MenuOpen) if (Width <= WidthFinal) Width += 40;	
+			else 		  if (Width >= WidthStart) Width -= 40;	*/
+			//Thread::Sleep(1);
 
 			if (MenuOpen) {
 				g->DrawString(Text, Font, ltxBrush, (int)(w / 2), 5 + Font->Size, SF);
 			}
 
-			Visible = !(Width == WidthStart);			
+			//Visible = !(Width == WidthStart);
+
+			Visible = MenuOpen; // Simple statement without anims
 		}
 
 		System::Void uiPanelMenu_MouseEnter(System::Object^ sender, System::EventArgs^ e) { Invalidate(); }
 
 #pragma endregion VOIDS
 	
-	};
+	
+};
 }

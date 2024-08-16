@@ -22,7 +22,9 @@ namespace ClassLibraryUI {
 	/// <summary>
 	/// Сводка для uiButton
 	/// </summary>
-	public ref class uiButton : public System::Windows::Forms::UserControl
+	//public ref class uiButton : public System::Windows::Forms::UserControl
+	public ref class uiButton : public System::Windows::Forms::Button
+		
 	{
 	public:
 		uiButton(void)
@@ -56,7 +58,8 @@ namespace ClassLibraryUI {
 
 	private:
 		StringFormat^ SF = gcnew StringFormat;		
-		int UICompState;
+	private: System::Windows::Forms::Button^ button1;
+		   int UICompState;
 
 	
 
@@ -87,19 +90,26 @@ namespace ClassLibraryUI {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(0, 0);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 0;
+			this->button1->Text = L"button1";
+			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// uiButton
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;//:Font;
-			this->Name = L"uiButton";
 			this->Size = System::Drawing::Size(100, 30);
-			this->Load += gcnew System::EventHandler(this, &uiButton::uiButton_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &uiButton::uiButton_Paint);
 			this->MouseEnter += gcnew System::EventHandler(this, &uiButton::uiButton_MouseEnter);
 			this->MouseLeave += gcnew System::EventHandler(this, &uiButton::uiButton_MouseLeave);
 			this->ResumeLayout(false);
+
 		}
 
 #pragma endregion
